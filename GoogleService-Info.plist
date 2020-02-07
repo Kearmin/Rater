@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1000505312337-7au52af9gmbb6s4gedl0j1jv8mi654vd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1000505312337-7au52af9gmbb6s4gedl0j1jv8mi654vd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCYizpWSFNZ7EFe2u7T9WPZV0U5k-mES2M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1000505312337</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jenci.Rater</string>
+	<key>PROJECT_ID</key>
+	<string>rater-283c1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rater-283c1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1000505312337:ios:e95775f295c868932f2470</string>
+	<key>DATABASE_URL</key>
+	<string>https://rater-283c1.firebaseio.com</string>
+</dict>
+</plist>
