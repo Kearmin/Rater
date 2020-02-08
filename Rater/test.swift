@@ -54,7 +54,7 @@ class test: ObservableObject {
             }) { (ratings) in
                 print(ratings)
         }
-    .store(in: &subscriptions)
-        
+        .store(in: &subscriptions)
+
     }
 }
