@@ -11,7 +11,7 @@ import Combine
 import CodableFirebase
 
 enum IdType {
-    case id
+    case ratingId
     case uploaderId
     case productId
 }
@@ -23,13 +23,13 @@ class RatingPublisher {
         let subject = PassthroughSubject<[Rating], Error>()
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Ratings").observe(.value) { (snapshot) in
-            
+            print(snapshot.value as Any)
             do {
                 //print(snapshot.value as Any)
                 var ratings = try FirebaseDecoder().decode([Rating].self, from: snapshot.value as Any)
                 
                 switch type {
-                case .id:
+                case .ratingId:
                     ratings = ratings.filter({ $0.id == id})
                 case .productId:
                     ratings = ratings.filter({ $0.productId == id})
@@ -54,14 +54,13 @@ class RatingPublisher {
         let subject = PassthroughSubject<Double, Error>()
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Ratings").observe(.value) { (snapshot) in
-            
+            print(snapshot.value as Any)
             do {
                 //print(snapshot.value as Any)
                 let ratings = try FirebaseDecoder().decode([Rating].self, from: snapshot.value as Any).filter({ $0.productId == id})
                 
                 let averageRating = Double(ratings.reduce(0) { $0 + $1.rating})
                 let count = Double(ratings.count)
-                print("xd")
                 subject.send(averageRating/count)
                 
             } catch let error {

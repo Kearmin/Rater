@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CE484B7F23EE4FBA003C59F8 /* ProductDetailHeaderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE484B7E23EE4FBA003C59F8 /* ProductDetailHeaderRow.swift */; };
+		CE484B8123EEEBDE003C59F8 /* ProductDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE484B8023EEEBDE003C59F8 /* ProductDetailFactory.swift */; };
+		CE484B8523EF4192003C59F8 /* ProductListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE484B8423EF4192003C59F8 /* ProductListRow.swift */; };
 		CE4D87BB23EB4FCF00E3028F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D87BA23EB4FCF00E3028F /* AppDelegate.swift */; };
 		CE4D87BD23EB4FCF00E3028F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D87BC23EB4FCF00E3028F /* SceneDelegate.swift */; };
 		CE4D87BF23EB4FCF00E3028F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D87BE23EB4FCF00E3028F /* ContentView.swift */; };
@@ -35,6 +37,8 @@
 		6345FBD582F90525BD602A39 /* Pods-Rater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rater.release.xcconfig"; path = "Target Support Files/Pods-Rater/Pods-Rater.release.xcconfig"; sourceTree = "<group>"; };
 		A0124FDCAF343EBF4C31D3CB /* Pods_Rater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE484B7E23EE4FBA003C59F8 /* ProductDetailHeaderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailHeaderRow.swift; sourceTree = "<group>"; };
+		CE484B8023EEEBDE003C59F8 /* ProductDetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailFactory.swift; sourceTree = "<group>"; };
+		CE484B8423EF4192003C59F8 /* ProductListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListRow.swift; sourceTree = "<group>"; };
 		CE4D87B723EB4FCF00E3028F /* Rater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rater.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4D87BA23EB4FCF00E3028F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE4D87BC23EB4FCF00E3028F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +81,22 @@
 				6345FBD582F90525BD602A39 /* Pods-Rater.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE484B8223EF40BF003C59F8 /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				CE484B8323EF40C8003C59F8 /* Views */,
+			);
+			path = ProductList;
+			sourceTree = "<group>";
+		};
+		CE484B8323EF40C8003C59F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE484B8423EF4192003C59F8 /* ProductListRow.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE4D87AE23EB4FCF00E3028F = {
@@ -136,6 +156,7 @@
 		CE53F18423EDE1010066078B /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
+				CE484B8223EF40BF003C59F8 /* ProductList */,
 				CE53F18523EDE10C0066078B /* ProductDetail */,
 			);
 			path = Usecase;
@@ -148,6 +169,7 @@
 				CE53F18823EDE1650066078B /* ProductDetailViewModel.swift */,
 				CE53F18A23EDE1700066078B /* ProductDetailModel.swift */,
 				CE53F18E23EDE1960066078B /* ProductDetailView.swift */,
+				CE484B8023EEEBDE003C59F8 /* ProductDetailFactory.swift */,
 			);
 			path = ProductDetail;
 			sourceTree = "<group>";
@@ -335,6 +357,7 @@
 				CE53F18B23EDE1700066078B /* ProductDetailModel.swift in Sources */,
 				CE53F19223EDE3170066078B /* ProductDetailCommentRow.swift in Sources */,
 				CE4D87BD23EB4FCF00E3028F /* SceneDelegate.swift in Sources */,
+				CE484B8123EEEBDE003C59F8 /* ProductDetailFactory.swift in Sources */,
 				CEA7A4C623ED7F5900C79DFE /* Product.swift in Sources */,
 				CE8E247823ED93EA0079C0C7 /* User.swift in Sources */,
 				CE4D87D023EB504900E3028F /* Firebase+extension.swift in Sources */,
@@ -342,6 +365,7 @@
 				CE53F18923EDE1650066078B /* ProductDetailViewModel.swift in Sources */,
 				CE8E247A23ED95400079C0C7 /* ProductPublisher.swift in Sources */,
 				CE484B7F23EE4FBA003C59F8 /* ProductDetailHeaderRow.swift in Sources */,
+				CE484B8523EF4192003C59F8 /* ProductListRow.swift in Sources */,
 				CE4D87BF23EB4FCF00E3028F /* ContentView.swift in Sources */,
 				CE8E248223EDA51B0079C0C7 /* RatingPublisher.swift in Sources */,
 				CE8E247623ED93BD0079C0C7 /* Rating.swift in Sources */,

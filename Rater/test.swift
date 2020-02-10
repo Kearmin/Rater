@@ -25,7 +25,7 @@ class test: ObservableObject {
 
         //var productsPublisher = PassthroughSubject<DataSnapshot, Error>()
 
-        let subscriber = ProductPublisher.allProduct()
+        let subscriber = ProductPublisher.allProduct(id: nil, type: .productId)
         let ratings = RatingPublisher.averageRating(for: 2)
         let asd = RatingPublisher.allRating(for: 1, type: .uploaderId)
         

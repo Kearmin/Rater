@@ -14,4 +14,5 @@ struct Rating: Codable {
     let rating: Int
     let id: Int
     let productId: Int
+    let title: String
 }

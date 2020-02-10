@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ProductDetailViewContent {
     let commentsStaticText: String
@@ -16,11 +17,11 @@ struct ProductDetailViewContent {
 
 struct ProductDetailView: View {
     
-    var viewContent: ProductDetailViewContent
+    @ObservedObject var viewModel: ProductDetailViewModel
     
-    init(viewContent: ProductDetailViewContent) {
+    init(viewModel: ProductDetailViewModel) {
         
-        self.viewContent = viewContent
+        self.viewModel = viewModel
         
         // To remove only extra separators below the list:
         UITableView.appearance().tableFooterView = UIView()
@@ -32,13 +33,13 @@ struct ProductDetailView: View {
     
     var body: some View {
         List {
-            ProductDetailHeaderRow(viewContent: self.viewContent.productDetailHeader)
+            ProductDetailHeaderRow(viewContent: self.viewModel.viewContent.productDetailHeader)
                 .padding(.bottom, 20.0)
             
             VStack(alignment: .leading, spacing: 12.0){
-                Text(self.viewContent.commentsStaticText)
+                Text(self.viewModel.viewContent.commentsStaticText)
                     .bold()
-                ForEach(self.viewContent.comments) { comment in
+                ForEach(self.viewModel.viewContent.comments) { comment in
                     ProductDetailCommentRow(viewContent: comment)
                         .padding(.bottom, 5.0)
                 }
@@ -49,10 +50,11 @@ struct ProductDetailView: View {
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailView(viewContent: ProductDetailViewContent(commentsStaticText: "Kommentek:", productDetailHeader: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "valami cég", producetNameStaticText: "név:", productName: "valami név", descriptonStaticText: "leírás:", description: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú értékelés", image: Image("E")), comments: [
-            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,0.0,0.0,0.0], commenterName: "Valaki", commentTitle: "Rossz", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment"),
-            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,1.0,1.0,1.0], commenterName: "én", commentTitle: "Nagyon jó", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment"),
-            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,1.0,1.0,0.0], commenterName: "kjashd", commentTitle: "volt már jobb is...", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment")
-        ]))
+        ProductDetailView(viewModel: ProductDetailViewModel(productId: 2, productDetailModel: ProductDetailModel(productId: 2)))
+//        ProductDetailView(viewContent: ProductDetailViewContent(commentsStaticText: "Kommentek:", productDetailHeader: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "valami cég", producetNameStaticText: "név:", productName: "valami név", descriptonStaticText: "leírás:", description: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú értékelés", image: Image("E")), comments: [
+//            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,0.0,0.0,0.0], commenterName: "Valaki", commentTitle: "Rossz", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment"),
+//            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,1.0,1.0,1.0], commenterName: "én", commentTitle: "Nagyon jó", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment"),
+//            ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,1.0,1.0,0.0], commenterName: "kjashd", commentTitle: "volt már jobb is...", commentText: "Nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon nagyon husszú komment")
+//        ]))
     }
 }

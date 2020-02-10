@@ -32,15 +32,25 @@ class ProductPublisher {
     
     init(){}
     
-    static func allProduct() -> FireBaseSubject<[Product], Error> {
+    static func allProduct(id: Int?, type: IdType) -> FireBaseSubject<[Product], Error> {
         
         let subject = PassthroughSubject<[Product], Error>()
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Products").observe(.value) { (snapshot) in
-            
+            print(snapshot.value as Any)
             do {
                 //print(snapshot.value as Any)
                 var products = try FirebaseDecoder().decode([Product].self, from: snapshot.value as Any)
+                
+                switch type {
+                case .productId:
+                    products = products.filter{ $0.id == id }
+                case .uploaderId:
+                    products = products.filter{ $0.uploaderId == id }
+                default:
+                    break
+                }
+                
                 subject.send(products)
             } catch let error {
                 subject.send(completion: .failure(error))
@@ -51,5 +61,6 @@ class ProductPublisher {
         
         return firebaseSubject
     }
+    
     
 }
