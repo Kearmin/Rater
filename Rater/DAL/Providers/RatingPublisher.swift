@@ -61,9 +61,15 @@ class RatingPublisher {
                 
                 let averageRating = Double(ratings.reduce(0) { $0 + $1.rating})
                 let count = Double(ratings.count)
-                subject.send(averageRating/count)
                 
+                if count < 1 {
+                    subject.send(0.0)
+                } else {
+                    subject.send(averageRating/count)
+                }
+
             } catch let error {
+                print(error)
                 subject.send(completion: .failure(error))
             }
         }

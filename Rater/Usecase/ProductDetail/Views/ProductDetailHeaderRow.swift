@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ProductDetailHeaderRowViewContent {
+struct ProductDetailHeaderRowViewContent: Identifiable {
     let id: String
     let title: String
     let productMakerStaticText: String

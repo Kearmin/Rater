@@ -8,14 +8,32 @@
 
 import SwiftUI
 
+struct ProductListRowViewContent: Identifiable {
+    let id: Int
+    let image: Image
+    let name: String
+}
+
 struct ProductListRow: View {
+    
+    var content: ProductListRowViewContent
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image("E")
+                .resizable()
+                .frame(width: 100.0, height: 100.0, alignment: .leading)
+            VStack{
+                Text("nagyaon nagyin hosszú név lorem ipsum lorem ipsum")
+                Text("lorem ipsum lorem ipsum ")
+            }
+            Spacer()
+        }
     }
 }
 
 struct ProductListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListRow()
+        ProductListRow(content: ProductListRowViewContent(id: 0, image: Image("E"), name: "hello")).previewLayout(.fixed(width: 200.0, height: 100.0))
     }
 }

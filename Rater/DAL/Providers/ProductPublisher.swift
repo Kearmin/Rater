@@ -42,17 +42,20 @@ class ProductPublisher {
                 //print(snapshot.value as Any)
                 var products = try FirebaseDecoder().decode([Product].self, from: snapshot.value as Any)
                 
-                switch type {
-                case .productId:
-                    products = products.filter{ $0.id == id }
-                case .uploaderId:
-                    products = products.filter{ $0.uploaderId == id }
-                default:
-                    break
+                if let id = id {
+                    switch type {
+                    case .productId:
+                        products = products.filter{ $0.id == id }
+                    case .uploaderId:
+                        products = products.filter{ $0.uploaderId == id }
+                    default:
+                        break
+                    }
                 }
                 
                 subject.send(products)
             } catch let error {
+                print(error)
                 subject.send(completion: .failure(error))
             }
         }

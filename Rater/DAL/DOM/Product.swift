@@ -15,4 +15,18 @@ struct Product: Codable {
     let producer: String
     let description: String
     let imageUrl: String?
+    let category: Category
+    let price: Double?
+}
+
+enum Category: Int, Codable {
+    case clothes = 0
+    case food
+    case technology
+    case furniture
+    case cosmetics
+    case toys
+    case videoGames
+    case cars
+    case undefined
 }

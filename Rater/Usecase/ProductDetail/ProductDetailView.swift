@@ -43,6 +43,9 @@ struct ProductDetailView: View {
                     ProductDetailCommentRow(viewContent: comment)
                         .padding(.bottom, 5.0)
                 }
+                if self.viewModel.viewContent.comments.count == 0 {
+                    Text("Még nincsenek :(")
+                }
             }
         }
     }
