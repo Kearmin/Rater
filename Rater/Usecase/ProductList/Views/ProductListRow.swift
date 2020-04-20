@@ -20,12 +20,17 @@ struct ProductListRow: View {
     
     var body: some View {
         HStack {
-            Image("E")
+            content.image
                 .resizable()
                 .frame(width: 100.0, height: 100.0, alignment: .leading)
-            VStack{
-                Text("nagyaon nagyin hosszú név lorem ipsum lorem ipsum")
-                Text("lorem ipsum lorem ipsum ")
+            VStack(alignment: .leading){
+                Text(content.name)
+                .bold()
+                .font(.largeTitle)
+                .padding()
+                Spacer()
+                Text("500 Ft")
+                .padding()
             }
             Spacer()
         }
@@ -34,6 +39,6 @@ struct ProductListRow: View {
 
 struct ProductListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListRow(content: ProductListRowViewContent(id: 0, image: Image("E"), name: "hello")).previewLayout(.fixed(width: 200.0, height: 100.0))
+        ProductListRow(content: ProductListRowViewContent(id: 0, image: Image("E"), name: "hello")).previewLayout(.fixed(width: 300.0, height: 120.0))
     }
 }

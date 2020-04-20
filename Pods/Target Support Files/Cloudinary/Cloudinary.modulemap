@@ -1,4 +1,4 @@
-framework module Cloudinary {
+module Cloudinary {
   umbrella header "Cloudinary-umbrella.h"
 
   export *

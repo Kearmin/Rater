@@ -28,13 +28,15 @@ class RatingPublisher {
                 //print(snapshot.value as Any)
                 var ratings = try FirebaseDecoder().decode([Rating].self, from: snapshot.value as Any)
                 
+                ObjectContainer.sharedInstace.refIds.ratingId = ratings.map { $0.id }.max()!
+                
                 switch type {
                 case .ratingId:
-                    ratings = ratings.filter({ $0.id == id})
+                    ratings = ratings.filter { $0.id == id}
                 case .productId:
-                    ratings = ratings.filter({ $0.productId == id})
+                    ratings = ratings.filter { $0.productId == id}
                 case .uploaderId:
-                    ratings = ratings.filter({ $0.uploaderId == id})
+                    ratings = ratings.filter { $0.uploaderId == id}
                 }
         
                 subject.send(ratings)

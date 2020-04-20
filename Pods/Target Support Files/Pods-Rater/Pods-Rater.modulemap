@@ -1,4 +1,4 @@
-framework module Pods_Rater {
+module Pods_Rater {
   umbrella header "Pods-Rater-umbrella.h"
 
   export *

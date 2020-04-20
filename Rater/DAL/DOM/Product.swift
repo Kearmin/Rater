@@ -21,12 +21,19 @@ struct Product: Codable {
 
 enum Category: Int, Codable {
     case clothes = 0
-    case food
-    case technology
-    case furniture
-    case cosmetics
-    case toys
-    case videoGames
-    case cars
-    case undefined
+    case food = 1
+    case technology = 2
+    case furniture = 3
+    case cosmetics = 4
+    case toys = 5
+    case videoGames = 6
+    case cars = 7
+    case undefined = 8
+}
+
+
+extension Category {
+    func intValue() -> Int {
+        return self.rawValue
+    }
 }

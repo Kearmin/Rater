@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import FirebaseDatabase
 import Firebase
 import CodableFirebase
 
@@ -42,6 +41,8 @@ class ProductPublisher {
                 //print(snapshot.value as Any)
                 var products = try FirebaseDecoder().decode([Product].self, from: snapshot.value as Any)
                 
+                ObjectContainer.sharedInstace.refIds.productId = products.map { $0.id }.max()!
+                
                 if let id = id {
                     switch type {
                     case .productId:
@@ -64,6 +65,4 @@ class ProductPublisher {
         
         return firebaseSubject
     }
-    
-    
 }

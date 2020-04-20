@@ -12,17 +12,23 @@ struct MainView: View {
     var body: some View {
         TabView {
             ProductListFactory.createProductList()
-            .tabItem{
-                Image(systemName: "magnifyingglass")
-            }
-            .tag(0)
+                .tabItem{
+                    Image(systemName: "magnifyingglass")
+                }
+                .tag(0)
             
-            Image("E").resizable().opacity(0.5)
-            .tabItem({
-                Text("Hello")
-            })
-            .tag(1)
+            Text("Profile")
+                .tabItem({
+                    Image(systemName: "person")
+                })
+                .tag(1  )
             
+            osaid()
+                .environmentObject(ScannerFlowData())
+                .tabItem({
+                    Text("Hello")
+                })
+                .tag(2)
         }
     }
 }
@@ -30,5 +36,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .previewLayout(.sizeThatFits)
     }
 }

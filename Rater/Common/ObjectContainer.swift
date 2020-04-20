@@ -7,13 +7,20 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
+
+struct DatabaseReferenceIds {
+    var productId: Int
+    var ratingId: Int
+    var userId: Int
+}
 
 class ObjectContainer {
     
     static var sharedInstace = ObjectContainer()
     
     var dbReference: DatabaseReference!
+    var refIds = DatabaseReferenceIds(productId: 0, ratingId: 0, userId: 0)
     
     private init(){
         self.dbReference = Database.database().reference()

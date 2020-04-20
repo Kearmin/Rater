@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ProductDetailCommentRowViewContent: Identifiable {
-    let id: String
+    let id: String = UUID().uuidString
     let starPercent: [Double]
     let commenterName: String
     let commentTitle: String
@@ -20,12 +20,24 @@ struct ProductDetailCommentRow: View {
     
     var viewContent: ProductDetailCommentRowViewContent
     
+    @State private var showModal = false
+    
+    var selectedId: Int?
+    
     var body: some View {
+        //NavigationView {
         VStack(alignment: .leading, spacing: 5.0){
             HStack(spacing: 10.0){
-                Text(self.viewContent.commenterName)
-                    .foregroundColor(.gray)
-                
+                Button(action: { self.showModal.toggle() }) {
+                    Text(self.viewContent.commenterName)
+                        .foregroundColor(.gray)
+                }
+                //                    NavigationLink(destination:
+                //                        UserCommentFactory.createUserComment(id: self.selectedId ?? 0)
+                //                    ) {
+                //                        Text(self.viewContent.commenterName)
+                //                            .foregroundColor(.gray)
+                //                    }
                 HStack(spacing: 2.0){
                     RatingStar(percent: self.viewContent.starPercent[0])
                     RatingStar(percent: self.viewContent.starPercent[1])
@@ -33,18 +45,20 @@ struct ProductDetailCommentRow: View {
                     RatingStar(percent: self.viewContent.starPercent[3])
                     RatingStar(percent: self.viewContent.starPercent[4])
                 }
-                
-                
             }
             VStack(alignment: .leading, spacing: 0.0){
                 Text(viewContent.commentTitle)
                     .bold()
                     .padding(.bottom, 5.0)
-
+                
                 Text(viewContent.commentText)
             }
         }
+        .sheet(isPresented: $showModal) {
+            UserCommentFactory.createUserComment(id: self.selectedId ?? 0)
+        }
     }
+    // }
 }
 
 struct RatingStar: View {
@@ -64,7 +78,7 @@ struct RatingStar: View {
 
 struct ProductDetailCommentRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailCommentRow(viewContent: ProductDetailCommentRowViewContent(id: UUID().uuidString, starPercent: [1.0,1.0,1.0,1.0,0.44], commenterName: "Arminous", commentTitle: "Nagyon jó!!!", commentText: "Amióta ezt a terméket használom azt se tudom mi van velem, Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"))
+        ProductDetailCommentRow(viewContent: ProductDetailCommentRowViewContent(starPercent: [1.0,1.0,1.0,1.0,0.44], commenterName: "Arminous", commentTitle: "Nagyon jó!!!", commentText: "Amióta ezt a terméket használom azt se tudom mi van velem, Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"))
             .previewLayout(.fixed(width: 450, height: 150))
     }
 }

@@ -26,21 +26,19 @@ class ProductListViewModel: ObservableObject {
         self.model = model
         self.setupText()
         self.setupContentGenerator()
-        self.load()
     }
 
     private func setupText(){
         
         $searchText
             .dropFirst()
-            .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
+            .debounce(for: 0.8, scheduler: RunLoop.main)
             .sink(receiveCompletion: { (error) in
                 print(error)
             }, receiveValue: { (string) in
                 self.usecasePublisher.send(self.usecasePublisher.value)
             })
-            //.assign(to: \.searchText, on: self)
             .store(in: &subscriptions)
     }
     

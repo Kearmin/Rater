@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ProductListViewContent : Identifiable{
-    let id: UUID = UUID()
+    let id: String = UUID().uuidString
     var rows: [ProductListRowViewContent]
 }
 
@@ -37,9 +37,10 @@ struct ProductListView: View {
                         }
                     }, label: {
                         Image(systemName: "magnifyingglass")
-                            .frame(width: 30.0, height: 30.0, alignment: .center)
-                            .background(Color.gray)
+                            .frame(width: 50.0, height: 50.0, alignment: .center)
                             .cornerRadius(5.0)
+                            .overlay(RoundedRectangle(cornerRadius: 5.0).stroke(Color.white,lineWidth: 4.0))
+                            .shadow(color: Color.black.opacity(0.1),radius: 2.0)
                         
                     })
                     if isSearching {
@@ -47,7 +48,7 @@ struct ProductListView: View {
                     }
                     TextField("Keresés", text: $viewModel.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .frame(width: self.isSearching ? 300.0 : 0.0)
+                        .frame(width: self.isSearching ? 280 : 0.0)
                         .fixedSize()
                 }
                 .padding([.leading, .trailing])
@@ -62,7 +63,9 @@ struct ProductListView: View {
                     
                 }
             }
-            .navigationBarTitle(Text("Keresés"))
+            .onAppear( perform: {self.viewModel.load()} )
+            .padding(.top, 15.0)
+            .navigationBarTitle(Text("Keresés"),displayMode: .inline)
         }
     }
 }

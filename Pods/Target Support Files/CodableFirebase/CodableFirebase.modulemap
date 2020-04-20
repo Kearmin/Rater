@@ -1,4 +1,4 @@
-framework module CodableFirebase {
+module CodableFirebase {
   umbrella header "CodableFirebase-umbrella.h"
 
   export *

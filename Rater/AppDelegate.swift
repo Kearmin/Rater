@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 import CodableFirebase
 import Combine
 
@@ -19,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
-
+        
+//        FirebaseWriteOperations(databaseReference: Database.database().reference()).createProduct(product:
+//            Product(name: "testststst", id: 4, uploaderId: 999, producer: "valaki", description: "ASGDHASGDK", imageUrl: nil, category: .cosmetics, price: nil))
+        
         return true
     }
     

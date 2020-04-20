@@ -24,7 +24,9 @@ class ProductDetailViewModel: ObservableObject {
     init(productId: Int, productDetailModel: ProductDetailModel ){
         self.productId = productId
         self.productDetailModel = productDetailModel
-        
+    }
+    
+    func start() {
         let ratingsPublisher = self.productDetailModel.getRatings()
         let averagePublisher = self.productDetailModel.getAverage()
         let productPublisher = self.productDetailModel.getProduct()
@@ -49,7 +51,7 @@ class ProductDetailViewModel: ObservableObject {
     private func createViewContent(product: Product?, ratings: [Rating], average: Double) -> ProductDetailViewContent {
         
         let comments = ratings.map { (rating) -> ProductDetailCommentRowViewContent in
-            ProductDetailCommentRowViewContent(id: String(rating.id), starPercent: self.calculateStarCount(from: rating.rating), commenterName: "TEMP", commentTitle: rating.title, commentText: rating.text)
+            ProductDetailCommentRowViewContent(starPercent: self.calculateStarCount(from: rating.rating), commenterName: "TEMP", commentTitle: rating.title, commentText: rating.text)
         }
         
         let header = ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: product?.producer ?? "", producetNameStaticText: "termék:", productName: product?.name ?? "", descriptonStaticText: "leírás:", description: product?.description ?? "", image: Image("E"), ratingStars: calculateStarPercents(from: average))
