@@ -24,11 +24,11 @@ struct ProductDetailView: View {
     init(viewModel: ProductDetailViewModel) {
         
         self.viewModel = viewModel
-//        // To remove only extra separators below the list:
-//        UITableView.appearance().tableFooterView = UIView()
-//
-//        // To remove all separators including the actual ones:
-//        UITableView.appearance().separatorStyle = .none
+        //        // To remove only extra separators below the list:
+        //        UITableView.appearance().tableFooterView = UIView()
+        //
+        //        // To remove all separators including the actual ones:
+        //        UITableView.appearance().separatorStyle = .none
     }
     
     
@@ -37,7 +37,6 @@ struct ProductDetailView: View {
             VStack {
                 ProductDetailHeaderRow(viewContent: self.viewModel.viewContent.productDetailHeader)
                     .padding()
-                
                 VStack(alignment: .leading, spacing: 12.0){
                     if self.viewModel.viewContent.comments.count == 0 {
                         Text("Még nincsenek kommentek :(")
@@ -53,8 +52,10 @@ struct ProductDetailView: View {
                 .padding()
             }
         }
+        .navigationBarTitle(Text("Értékelés"),displayMode: .inline)
         .onAppear(perform: { self.viewModel.start() })
     }
+    
 }
 
 struct ProductDetailView_Previews: PreviewProvider {

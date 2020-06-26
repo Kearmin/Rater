@@ -14,10 +14,22 @@ import Combine
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var subscriptions = Set<AnyCancellable>()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
         Database.database().isPersistenceEnabled = true
+        
+        UserNamePublisher.userName(for: 2).subject
+            .print()
+            .eraseToAnyPublisher()
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }) { name in
+                print(name)
+            }
+            .store(in: &subscriptions)
         
 //        FirebaseWriteOperations(databaseReference: Database.database().reference()).createProduct(product:
 //            Product(name: "testststst", id: 4, uploaderId: 999, producer: "valaki", description: "ASGDHASGDK", imageUrl: nil, category: .cosmetics, price: nil))

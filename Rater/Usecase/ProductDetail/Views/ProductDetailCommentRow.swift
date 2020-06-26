@@ -11,7 +11,7 @@ import SwiftUI
 struct ProductDetailCommentRowViewContent: Identifiable {
     let id: String = UUID().uuidString
     let starPercent: [Double]
-    let commenterName: String
+    var commenterName: String
     let commentTitle: String
     let commentText: String
 }
@@ -25,19 +25,14 @@ struct ProductDetailCommentRow: View {
     var selectedId: Int?
     
     var body: some View {
-        //NavigationView {
         VStack(alignment: .leading, spacing: 5.0){
             HStack(spacing: 10.0){
-                Button(action: { self.showModal.toggle() }) {
+                NavigationLink(destination: UserCommentFactory.createUserComment(id: self.selectedId ?? 0), label: {
                     Text(self.viewContent.commenterName)
                         .foregroundColor(.gray)
-                }
-                //                    NavigationLink(destination:
-                //                        UserCommentFactory.createUserComment(id: self.selectedId ?? 0)
-                //                    ) {
-                //                        Text(self.viewContent.commenterName)
-                //                            .foregroundColor(.gray)
-                //                    }
+                        .fixedSize()
+                        .frame(idealWidth: 20.0)
+                })
                 HStack(spacing: 2.0){
                     RatingStar(percent: self.viewContent.starPercent[0])
                     RatingStar(percent: self.viewContent.starPercent[1])
@@ -58,7 +53,6 @@ struct ProductDetailCommentRow: View {
             UserCommentFactory.createUserComment(id: self.selectedId ?? 0)
         }
     }
-    // }
 }
 
 struct RatingStar: View {

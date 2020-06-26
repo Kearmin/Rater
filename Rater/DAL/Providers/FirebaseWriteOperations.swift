@@ -37,7 +37,7 @@ class FirebaseWriteOperations {
         
         guard let ref = ref else { return }
         
-        ref.child("RATINGs").child("\(ObjectContainer.sharedInstace.refIds.ratingId + 1)").setValue(
+        ref.child("Ratings").child("\(ObjectContainer.sharedInstace.refIds.ratingId + 1)").setValue(
             [
                 "productId": rating.productId,
                 "rating": rating.rating,

@@ -21,9 +21,12 @@ struct osaid: View {
                 Text(self.data.barcode ?? "")
                     .background(Color.red)
                 
-                NavigationLink(destination: ScannerView(viewModel: ScannerViewModel())) {
-                    Text("Hello menjünk tovább")
-                }
+//                NavigationLink(destination: ScannerView(viewModel: ScannerViewModel())) {
+//                    Text("Hello menjünk tovább")
+//                }
+//                NavigationLink(destination: TakePictureView(isShown: <#Binding<Bool>#>, image: <#Binding<Image?>#>)) {
+//                    Text("Hello menjünk tovább")
+//                }
             }
         }
     }

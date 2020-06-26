@@ -42,4 +42,12 @@ class ProductDetailModel {
         .print("RATINGPUBLISHER")
         .eraseToAnyPublisher()
     }
+    
+    func getName(id: Int) -> AnyPublisher<String, Error> {
+        
+        return UserNamePublisher.userName(for: id).subject
+        .print("USERNAMEPUBLISHER")
+        .eraseToAnyPublisher()
+    }
+    
 }

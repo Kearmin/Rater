@@ -21,14 +21,20 @@ struct MainView: View {
                 .tabItem({
                     Image(systemName: "person")
                 })
-                .tag(1  )
+                .tag(1)
+            
+            AddProducrFactory.createAddProduct()
+                .tabItem {
+                    Image(systemName: "plus")
+                }
+                .tag(2)
             
             osaid()
                 .environmentObject(ScannerFlowData())
                 .tabItem({
                     Text("Hello")
                 })
-                .tag(2)
+                .tag(3)
         }
     }
 }

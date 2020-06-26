@@ -13,6 +13,9 @@
 		CE2A8BFF23F152DA00BF60AA /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8BFE23F152DA00BF60AA /* ProductListViewModel.swift */; };
 		CE2A8C0123F152E600BF60AA /* ProductListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8C0023F152E600BF60AA /* ProductListModel.swift */; };
 		CE2A8C0323F152F700BF60AA /* ProductListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8C0223F152F700BF60AA /* ProductListFactory.swift */; };
+		CE31C68B24A3F92F00A76E85 /* AddProductFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31C68A24A3F92F00A76E85 /* AddProductFactory.swift */; };
+		CE31C68E24A406C000A76E85 /* UIImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31C68D24A406C000A76E85 /* UIImagePickerController.swift */; };
+		CE31C69024A4081F00A76E85 /* TakePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31C68F24A4081F00A76E85 /* TakePictureView.swift */; };
 		CE36AFE62406875C004AF1AC /* UIScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36AFE52406875C004AF1AC /* UIScannerViewController.swift */; };
 		CE36AFE8240688AD004AF1AC /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36AFE7240688AD004AF1AC /* ScannerView.swift */; };
 		CE36AFEA24068A14004AF1AC /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36AFE924068A14004AF1AC /* ScannerViewModel.swift */; };
@@ -36,6 +39,7 @@
 		CE63C81B241BD0A3006064A7 /* UserCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE63C81A241BD0A3006064A7 /* UserCommentViewModel.swift */; };
 		CE63C81D241BD0AF006064A7 /* UserCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE63C81C241BD0AF006064A7 /* UserCommentModel.swift */; };
 		CE63C81F241BD0BF006064A7 /* UserCommentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE63C81E241BD0BF006064A7 /* UserCommentFactory.swift */; };
+		CE786077248BBE53006E7411 /* UserNamePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE786076248BBE53006E7411 /* UserNamePublisher.swift */; };
 		CE874DFC2405C5D20036E439 /* ProductDetailComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE874DFB2405C5D20036E439 /* ProductDetailComments.swift */; };
 		CE8E247323ED8FA10079C0C7 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E247223ED8FA10079C0C7 /* test.swift */; };
 		CE8E247623ED93BD0079C0C7 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E247523ED93BD0079C0C7 /* Rating.swift */; };
@@ -47,6 +51,9 @@
 		CEA7A4C623ED7F5900C79DFE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7A4C523ED7F5900C79DFE /* Product.swift */; };
 		CEB2453B244DF85400A17A87 /* FirebaseWriteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */; };
 		CEF653AD240694EB00432EFA /* osaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF653AC240694EB00432EFA /* osaid.swift */; };
+		CEF95AB624A3EC24006FFD66 /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF95AB524A3EC23006FFD66 /* AddProductViewModel.swift */; };
+		CEF95AB824A3EC2E006FFD66 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF95AB724A3EC2E006FFD66 /* AddProductView.swift */; };
+		CEF95ABA24A3EC39006FFD66 /* AddProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF95AB924A3EC39006FFD66 /* AddProductModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +78,9 @@
 		CE30AA842405474200BAB5AC /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE30AA852405474200BAB5AC /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE30AA862405474200BAB5AC /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE31C68A24A3F92F00A76E85 /* AddProductFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductFactory.swift; sourceTree = "<group>"; };
+		CE31C68D24A406C000A76E85 /* UIImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePickerController.swift; sourceTree = "<group>"; };
+		CE31C68F24A4081F00A76E85 /* TakePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePictureView.swift; sourceTree = "<group>"; };
 		CE36AFE52406875C004AF1AC /* UIScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScannerViewController.swift; sourceTree = "<group>"; };
 		CE36AFE7240688AD004AF1AC /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		CE36AFE924068A14004AF1AC /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +106,7 @@
 		CE63C81A241BD0A3006064A7 /* UserCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentViewModel.swift; sourceTree = "<group>"; };
 		CE63C81C241BD0AF006064A7 /* UserCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentModel.swift; sourceTree = "<group>"; };
 		CE63C81E241BD0BF006064A7 /* UserCommentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentFactory.swift; sourceTree = "<group>"; };
+		CE786076248BBE53006E7411 /* UserNamePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNamePublisher.swift; sourceTree = "<group>"; };
 		CE874DFB2405C5D20036E439 /* ProductDetailComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailComments.swift; sourceTree = "<group>"; };
 		CE8E247223ED8FA10079C0C7 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		CE8E247523ED93BD0079C0C7 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
@@ -107,6 +118,9 @@
 		CEA7A4C523ED7F5900C79DFE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWriteOperations.swift; sourceTree = "<group>"; };
 		CEF653AC240694EB00432EFA /* osaid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = osaid.swift; sourceTree = "<group>"; };
+		CEF95AB524A3EC23006FFD66 /* AddProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewModel.swift; sourceTree = "<group>"; };
+		CEF95AB724A3EC2E006FFD66 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		CEF95AB924A3EC39006FFD66 /* AddProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,9 +153,19 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		CE31C68C24A406A300A76E85 /* TakePicture */ = {
+			isa = PBXGroup;
+			children = (
+				CE31C68D24A406C000A76E85 /* UIImagePickerController.swift */,
+				CE31C68F24A4081F00A76E85 /* TakePictureView.swift */,
+			);
+			path = TakePicture;
+			sourceTree = "<group>";
+		};
 		CE36AFE424068735004AF1AC /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				CE31C68C24A406A300A76E85 /* TakePicture */,
 				CEF653AE2406A42A00432EFA /* Scanner */,
 			);
 			path = CommonViews;
@@ -233,6 +257,7 @@
 		CE53F18423EDE1010066078B /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
+				CEF95AB424A3EC04006FFD66 /* AddProduct */,
 				CE2A89B123F6CF4D00D44F04 /* Main */,
 				CE63C814241BC9DD006064A7 /* UserComments */,
 				CE484B8223EF40BF003C59F8 /* ProductList */,
@@ -245,9 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				CE53F19023EDE3010066078B /* Views */,
+				CE53F18E23EDE1960066078B /* ProductDetailView.swift */,
 				CE53F18823EDE1650066078B /* ProductDetailViewModel.swift */,
 				CE53F18A23EDE1700066078B /* ProductDetailModel.swift */,
-				CE53F18E23EDE1960066078B /* ProductDetailView.swift */,
 				CE484B8023EEEBDE003C59F8 /* ProductDetailFactory.swift */,
 			);
 			path = ProductDetail;
@@ -289,6 +314,7 @@
 				CE8E247923ED95400079C0C7 /* ProductPublisher.swift */,
 				CE8E248123EDA51B0079C0C7 /* RatingPublisher.swift */,
 				CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */,
+				CE786076248BBE53006E7411 /* UserNamePublisher.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -338,6 +364,17 @@
 				CE36AFE924068A14004AF1AC /* ScannerViewModel.swift */,
 			);
 			path = Scanner;
+			sourceTree = "<group>";
+		};
+		CEF95AB424A3EC04006FFD66 /* AddProduct */ = {
+			isa = PBXGroup;
+			children = (
+				CEF95AB724A3EC2E006FFD66 /* AddProductView.swift */,
+				CEF95AB524A3EC23006FFD66 /* AddProductViewModel.swift */,
+				CEF95AB924A3EC39006FFD66 /* AddProductModel.swift */,
+				CE31C68A24A3F92F00A76E85 /* AddProductFactory.swift */,
+			);
+			path = AddProduct;
 			sourceTree = "<group>";
 		};
 		D52BE50D2E3D256B7003694F /* Frameworks */ = {
@@ -462,13 +499,17 @@
 				CE63C81B241BD0A3006064A7 /* UserCommentViewModel.swift in Sources */,
 				CE4D87BB23EB4FCF00E3028F /* AppDelegate.swift in Sources */,
 				CE53F18F23EDE1960066078B /* ProductDetailView.swift in Sources */,
+				CE786077248BBE53006E7411 /* UserNamePublisher.swift in Sources */,
+				CEF95ABA24A3EC39006FFD66 /* AddProductModel.swift in Sources */,
 				CEA64443241BD878008E4F0F /* AppError.swift in Sources */,
 				CE8E247323ED8FA10079C0C7 /* test.swift in Sources */,
 				CE53F18B23EDE1700066078B /* ProductDetailModel.swift in Sources */,
 				CE2A8C0323F152F700BF60AA /* ProductListFactory.swift in Sources */,
 				CE63C81D241BD0AF006064A7 /* UserCommentModel.swift in Sources */,
+				CE31C68E24A406C000A76E85 /* UIImagePickerController.swift in Sources */,
 				CE53F19223EDE3170066078B /* ProductDetailCommentRow.swift in Sources */,
 				CE36AFE62406875C004AF1AC /* UIScannerViewController.swift in Sources */,
+				CE31C69024A4081F00A76E85 /* TakePictureView.swift in Sources */,
 				CEB2453B244DF85400A17A87 /* FirebaseWriteOperations.swift in Sources */,
 				CE4D87BD23EB4FCF00E3028F /* SceneDelegate.swift in Sources */,
 				CE2A8BFF23F152DA00BF60AA /* ProductListViewModel.swift in Sources */,
@@ -480,8 +521,11 @@
 				CE8E247D23ED95D70079C0C7 /* ObjectContainer.swift in Sources */,
 				CE53F18923EDE1650066078B /* ProductDetailViewModel.swift in Sources */,
 				CE8E247A23ED95400079C0C7 /* ProductPublisher.swift in Sources */,
+				CEF95AB624A3EC24006FFD66 /* AddProductViewModel.swift in Sources */,
 				CEF653AD240694EB00432EFA /* osaid.swift in Sources */,
 				CE36AFE8240688AD004AF1AC /* ScannerView.swift in Sources */,
+				CEF95AB824A3EC2E006FFD66 /* AddProductView.swift in Sources */,
+				CE31C68B24A3F92F00A76E85 /* AddProductFactory.swift in Sources */,
 				CE484B7F23EE4FBA003C59F8 /* ProductDetailHeaderRow.swift in Sources */,
 				CE2A8C0123F152E600BF60AA /* ProductListModel.swift in Sources */,
 				CE2A8BFD23F152CD00BF60AA /* ProductListView.swift in Sources */,
@@ -635,6 +679,7 @@
 				DEVELOPMENT_TEAM = 4W92454MDD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Rater/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,6 +703,7 @@
 				DEVELOPMENT_TEAM = 4W92454MDD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Rater/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

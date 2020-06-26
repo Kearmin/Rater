@@ -25,9 +25,10 @@ struct UserCommentsView: View {
                     .padding()
             }
         }
+        .navigationBarTitle("Hello")
         .padding(.all, 2.0)
         .onAppear(perform: {
-            //self.viewModel.fetch()
+            self.viewModel.fetch()
         })
     }
 }

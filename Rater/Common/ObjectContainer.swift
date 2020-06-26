@@ -21,6 +21,7 @@ class ObjectContainer {
     
     var dbReference: DatabaseReference!
     var refIds = DatabaseReferenceIds(productId: 0, ratingId: 0, userId: 0)
+    var user = User(id: 0, accountName: "temp", password: "aksjd")
     
     private init(){
         self.dbReference = Database.database().reference()
