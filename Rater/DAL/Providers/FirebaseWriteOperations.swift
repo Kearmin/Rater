@@ -25,10 +25,11 @@ class FirebaseWriteOperations {
             [
                 "name": product.name,
                 "description": product.description,
-                "id": ObjectContainer.sharedInstace.refIds.ratingId + 1,
+                "id": product.id,
                 "producer": product.producer,
                 "uploaderId": product.uploaderId,
-                "category": product.category.intValue()
+                "category": product.category.intValue(),
+                "barcode": product.barcode  
             ]
         )
     }

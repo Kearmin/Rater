@@ -15,15 +15,16 @@ class AddProductViewModel: ObservableObject {
     @Published var producer: String = ""
     @Published var description: String = ""
     @Published var productImage: Image = Image("E")
-    @Published var barcode: String = ""
     
     private let addProductModel: AddProductModel
     
-    func createNewItem() {
+    func createNewItem(barcode: String) {
         
-        let product = Product(name: name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: ObjectContainer.sharedInstace.user.id, producer: producer, description: description, imageUrl: nil, category: .undefined, price: nil)
-        self.addProductModel.createRating(product: product)
+        let product = Product(name: name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: ObjectContainer.sharedInstace.user.id, producer: producer, description: description, imageUrl: nil, category: .undefined, price: nil, barcode: Int(barcode))
         
+        self.addProductModel.createProduct(product: product)
+        
+        ObjectContainer.sharedInstace.refIds.productId += 1      
     }
     
     func takePicture() {
@@ -33,5 +34,4 @@ class AddProductViewModel: ObservableObject {
     init(model: AddProductModel) {
         self.addProductModel = model
     }
-    
 }

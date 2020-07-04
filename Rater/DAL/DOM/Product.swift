@@ -17,6 +17,7 @@ struct Product: Codable {
     let imageUrl: String?
     let category: Category
     let price: Double?
+    let barcode: Int?
 }
 
 enum Category: Int, Codable {

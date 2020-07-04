@@ -16,7 +16,7 @@ class AddProductModel {
         self.provider = FirebaseWriteOperations(databaseReference: ObjectContainer.sharedInstace.dbReference)
     }
     
-    func createRating(product: Product) {
+    func createProduct(product: Product) {
         self.provider.createProduct(product: product)
     }
 }

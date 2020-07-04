@@ -10,7 +10,7 @@ import SwiftUI
 
 class ScannerFlowData: ObservableObject {
     @Published var didFinishScanning: Bool = false
-    @Published var barcode: String? = nil
+    @Published var barcode: String = ""
 }
 
 struct ScannerViewControllerReplesentable: UIViewControllerRepresentable {
@@ -38,14 +38,17 @@ struct ScannerView: View {
     }
     
     var body: some View {
-        VStack{
-            ScannerViewControllerReplesentable()
-        }
-        .onReceive(self.viewModel.finishPublisher) { string in
-            print(string)
-            self.flowData.didFinishScanning = true
-            self.flowData.barcode = string
-            self.presentation.wrappedValue.dismiss()
+        NavigationView {
+            VStack{
+                ScannerViewControllerReplesentable()
+            }
+            .onReceive(self.viewModel.finishPublisher) { string in
+                print(string)
+                self.flowData.didFinishScanning = true
+                self.flowData.barcode = string
+                self.presentation.wrappedValue.dismiss()
+            }
+            .navigationBarTitle("Scan Barcode", displayMode: .inline)
         }
     }
 }
