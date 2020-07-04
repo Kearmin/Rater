@@ -4,8 +4,8 @@
 target 'Rater' do
   # Comment the next line if you don't want to use dynamic frameworks
   #use_frameworks!
-  #use_modular_headers!
-
+  use_modular_headers!
+  
   # Pods for Rater
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
@@ -14,5 +14,7 @@ target 'Rater' do
   pod 'Firebase/Database'
   pod 'Cloudinary', '~> 2.0'
   pod 'CodableFirebase'
+  pod 'SDWebImageSwiftUI'
+  pod 'SDWebImage'
   
 end
