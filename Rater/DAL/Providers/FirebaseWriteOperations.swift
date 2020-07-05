@@ -20,18 +20,24 @@ class FirebaseWriteOperations {
     func createProduct(product: Product) {
         
         guard let ref = ref else { return }
+    
+        var value = [
+            "name": product.name,
+            "description": product.description,
+            "id": product.id,
+            "producer": product.producer,
+            "uploaderId": product.uploaderId,
+            "category": product.category.intValue(),
+            ] as [String : Any]
         
-        ref.child("Products").child("\(ObjectContainer.sharedInstace.refIds.productId + 1)").setValue(
-            [
-                "name": product.name,
-                "description": product.description,
-                "id": product.id,
-                "producer": product.producer,
-                "uploaderId": product.uploaderId,
-                "category": product.category.intValue(),
-                "barcode": product.barcode  
-            ]
-        )
+        if let barcode = product.barcode {
+            value["barcode"] = barcode
+        }
+        if let imageUrl = product.imageUrl {
+            value["imageUrl"] = imageUrl.absoluteString
+        }
+        
+        ref.child("Products").child("\(ObjectContainer.sharedInstace.refIds.productId + 1)").setValue(value)
     }
     
     func createRating(rating: Rating) {

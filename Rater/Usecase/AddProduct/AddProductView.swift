@@ -14,7 +14,7 @@ struct AddProductView: View {
     @ObservedObject var keyboard = KeyboardResponder()
     
     @State var showCaptureImageView: Bool = false
-    @State var image: Image? = nil
+    @State var image: UIImage? = nil
     
     @EnvironmentObject var data: ScannerFlowData
     
@@ -23,12 +23,8 @@ struct AddProductView: View {
             ZStack {
                 ScrollView {
                     VStack(alignment: .leading){
-//                        Text("Add new item")
-//                            .font(.largeTitle)
-//                            .padding([.top,.leading])
-                        
                         VStack(alignment: .leading, spacing: 0.0) {
-                            (self.image ?? Image("E"))
+                            Image(uiImage: self.$viewModel.productImage.wrappedValue ?? UIImage(named: "noImage")!)
                                 .resizable()
                                 .frame(width: 110.0, height: 110.0, alignment: .center)
                                 .padding()
@@ -71,9 +67,15 @@ struct AddProductView: View {
                         .background(Color.black)
                     }
                 }
+                .blur(radius: self.viewModel.isLoading ? 10.0 : 0.0)
                 .offset(x: 0.0, y: -keyboard.currentHeight)
                 if showCaptureImageView {
-                    TakePictureView(isShown: $showCaptureImageView, image: $image)
+                    TakePictureView(isShown: $showCaptureImageView, image: self.$viewModel.productImage)
+                }
+                
+                if self.viewModel.isLoading {
+                    ActivityIndicator(isAnimating: self.$viewModel.isLoading, style: .large)
+                        .zIndex(2.0)
                 }
             }
             .navigationBarTitle("Add New Item", displayMode: .inline)
@@ -83,6 +85,6 @@ struct AddProductView: View {
 
 struct AddProductView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProductView(viewModel: AddProductViewModel(model: AddProductModel()))
+        AddProductView(viewModel: AddProductViewModel(model: AddProductModel(), flowData: ScannerFlowData()))
     }
 }

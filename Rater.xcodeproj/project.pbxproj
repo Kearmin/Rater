@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		470FD0C0C237E548FDFE6465 /* libPods-Rater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 363AEC105F0D1AA4775023DA /* libPods-Rater.a */; };
+		CE162A6424B20D6200ADE769 /* UIApplication+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6324B20D6200ADE769 /* UIApplication+extension.swift */; };
+		CE162A6724B21D4500ADE769 /* AddRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6624B21D4500ADE769 /* AddRatingViewModel.swift */; };
+		CE162A6924B21D5200ADE769 /* AddRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6824B21D5200ADE769 /* AddRatingView.swift */; };
+		CE162A6B24B21D5B00ADE769 /* AddRatingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6A24B21D5B00ADE769 /* AddRatingModel.swift */; };
+		CE162A6D24B21D6400ADE769 /* AddRatingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6C24B21D6400ADE769 /* AddRatingFactory.swift */; };
+		CE162A6F24B224A000ADE769 /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A6E24B224A000ADE769 /* MultilineTextView.swift */; };
+		CE162A7124B25F8C00ADE769 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE162A7024B25F8C00ADE769 /* ActivityIndicator.swift */; };
 		CE2A89B323F6CF6300D44F04 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A89B223F6CF6300D44F04 /* MainView.swift */; };
 		CE2A8BFD23F152CD00BF60AA /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8BFC23F152CD00BF60AA /* ProductListView.swift */; };
 		CE2A8BFF23F152DA00BF60AA /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8BFE23F152DA00BF60AA /* ProductListViewModel.swift */; };
@@ -47,6 +54,9 @@
 		CE8E247A23ED95400079C0C7 /* ProductPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E247923ED95400079C0C7 /* ProductPublisher.swift */; };
 		CE8E247D23ED95D70079C0C7 /* ObjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E247C23ED95D70079C0C7 /* ObjectContainer.swift */; };
 		CE8E248223EDA51B0079C0C7 /* RatingPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8E248123EDA51B0079C0C7 /* RatingPublisher.swift */; };
+		CEA60F3C24B1326B007D9D50 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA60F3B24B1326B007D9D50 /* ImageProvider.swift */; };
+		CEA60F3E24B13599007D9D50 /* ImgurImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA60F3D24B13599007D9D50 /* ImgurImage.swift */; };
+		CEA60F4024B1361E007D9D50 /* ImgurBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA60F3F24B1361E007D9D50 /* ImgurBase.swift */; };
 		CEA64443241BD878008E4F0F /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA64442241BD877008E4F0F /* AppError.swift */; };
 		CEA7A4C623ED7F5900C79DFE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7A4C523ED7F5900C79DFE /* Product.swift */; };
 		CEB2453B244DF85400A17A87 /* FirebaseWriteOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */; };
@@ -62,6 +72,13 @@
 		363AEC105F0D1AA4775023DA /* libPods-Rater.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Rater.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6345FBD582F90525BD602A39 /* Pods-Rater.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rater.release.xcconfig"; path = "Target Support Files/Pods-Rater/Pods-Rater.release.xcconfig"; sourceTree = "<group>"; };
 		A0124FDCAF343EBF4C31D3CB /* Pods_Rater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE162A6324B20D6200ADE769 /* UIApplication+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+extension.swift"; sourceTree = "<group>"; };
+		CE162A6624B21D4500ADE769 /* AddRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingViewModel.swift; sourceTree = "<group>"; };
+		CE162A6824B21D5200ADE769 /* AddRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingView.swift; sourceTree = "<group>"; };
+		CE162A6A24B21D5B00ADE769 /* AddRatingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingModel.swift; sourceTree = "<group>"; };
+		CE162A6C24B21D6400ADE769 /* AddRatingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRatingFactory.swift; sourceTree = "<group>"; };
+		CE162A6E24B224A000ADE769 /* MultilineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextView.swift; sourceTree = "<group>"; };
+		CE162A7024B25F8C00ADE769 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		CE2A89B223F6CF6300D44F04 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE2A8BFC23F152CD00BF60AA /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		CE2A8BFE23F152DA00BF60AA /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
@@ -115,6 +132,9 @@
 		CE8E247923ED95400079C0C7 /* ProductPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPublisher.swift; sourceTree = "<group>"; };
 		CE8E247C23ED95D70079C0C7 /* ObjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContainer.swift; sourceTree = "<group>"; };
 		CE8E248123EDA51B0079C0C7 /* RatingPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingPublisher.swift; sourceTree = "<group>"; };
+		CEA60F3B24B1326B007D9D50 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		CEA60F3D24B13599007D9D50 /* ImgurImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurImage.swift; sourceTree = "<group>"; };
+		CEA60F3F24B1361E007D9D50 /* ImgurBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurBase.swift; sourceTree = "<group>"; };
 		CEA64442241BD877008E4F0F /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		CEA7A4C523ED7F5900C79DFE /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseWriteOperations.swift; sourceTree = "<group>"; };
@@ -146,6 +166,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CE162A6524B21D2A00ADE769 /* AddRating */ = {
+			isa = PBXGroup;
+			children = (
+				CE162A6824B21D5200ADE769 /* AddRatingView.swift */,
+				CE162A6624B21D4500ADE769 /* AddRatingViewModel.swift */,
+				CE162A6A24B21D5B00ADE769 /* AddRatingModel.swift */,
+				CE162A6C24B21D6400ADE769 /* AddRatingFactory.swift */,
+			);
+			path = AddRating;
+			sourceTree = "<group>";
+		};
 		CE2A89B123F6CF4D00D44F04 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +200,8 @@
 			children = (
 				CE31C68C24A406A300A76E85 /* TakePicture */,
 				CEF653AE2406A42A00432EFA /* Scanner */,
+				CE162A6E24B224A000ADE769 /* MultilineTextView.swift */,
+				CE162A7024B25F8C00ADE769 /* ActivityIndicator.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -259,6 +292,7 @@
 		CE53F18423EDE1010066078B /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
+				CE162A6524B21D2A00ADE769 /* AddRating */,
 				CEF95AB424A3EC04006FFD66 /* AddProduct */,
 				CE2A89B123F6CF4D00D44F04 /* Main */,
 				CE63C814241BC9DD006064A7 /* UserComments */,
@@ -317,6 +351,7 @@
 				CE8E248123EDA51B0079C0C7 /* RatingPublisher.swift */,
 				CEB2453A244DF85400A17A87 /* FirebaseWriteOperations.swift */,
 				CE786076248BBE53006E7411 /* UserNamePublisher.swift */,
+				CEA60F3B24B1326B007D9D50 /* ImageProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -335,6 +370,7 @@
 		CE8E247E23EDA1390079C0C7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE162A6324B20D6200ADE769 /* UIApplication+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +391,8 @@
 				CE8E247523ED93BD0079C0C7 /* Rating.swift */,
 				CE8E247723ED93EA0079C0C7 /* User.swift */,
 				CEA64442241BD877008E4F0F /* AppError.swift */,
+				CEA60F3D24B13599007D9D50 /* ImgurImage.swift */,
+				CEA60F3F24B1361E007D9D50 /* ImgurBase.swift */,
 			);
 			path = DOM;
 			sourceTree = "<group>";
@@ -506,26 +544,36 @@
 				CE786077248BBE53006E7411 /* UserNamePublisher.swift in Sources */,
 				CEF95ABA24A3EC39006FFD66 /* AddProductModel.swift in Sources */,
 				CEA64443241BD878008E4F0F /* AppError.swift in Sources */,
+				CE162A6B24B21D5B00ADE769 /* AddRatingModel.swift in Sources */,
+				CE162A6D24B21D6400ADE769 /* AddRatingFactory.swift in Sources */,
 				CE8E247323ED8FA10079C0C7 /* test.swift in Sources */,
 				CE53F18B23EDE1700066078B /* ProductDetailModel.swift in Sources */,
 				CE2A8C0323F152F700BF60AA /* ProductListFactory.swift in Sources */,
 				CE63C81D241BD0AF006064A7 /* UserCommentModel.swift in Sources */,
+				CEA60F3E24B13599007D9D50 /* ImgurImage.swift in Sources */,
+				CEA60F3C24B1326B007D9D50 /* ImageProvider.swift in Sources */,
 				CE31C68E24A406C000A76E85 /* UIImagePickerController.swift in Sources */,
+				CEA60F4024B1361E007D9D50 /* ImgurBase.swift in Sources */,
 				CE53F19223EDE3170066078B /* ProductDetailCommentRow.swift in Sources */,
 				CE36AFE62406875C004AF1AC /* UIScannerViewController.swift in Sources */,
 				CE31C69024A4081F00A76E85 /* TakePictureView.swift in Sources */,
+				CE162A6F24B224A000ADE769 /* MultilineTextView.swift in Sources */,
 				CEB2453B244DF85400A17A87 /* FirebaseWriteOperations.swift in Sources */,
 				CE4D87BD23EB4FCF00E3028F /* SceneDelegate.swift in Sources */,
 				CE2A8BFF23F152DA00BF60AA /* ProductListViewModel.swift in Sources */,
 				CE484B8123EEEBDE003C59F8 /* ProductDetailFactory.swift in Sources */,
 				CEA7A4C623ED7F5900C79DFE /* Product.swift in Sources */,
 				CE8E247823ED93EA0079C0C7 /* User.swift in Sources */,
+				CE162A6424B20D6200ADE769 /* UIApplication+extension.swift in Sources */,
 				CE36AFEA24068A14004AF1AC /* ScannerViewModel.swift in Sources */,
 				CE4D87D023EB504900E3028F /* Firebase+extension.swift in Sources */,
+				CE162A7124B25F8C00ADE769 /* ActivityIndicator.swift in Sources */,
 				CE8E247D23ED95D70079C0C7 /* ObjectContainer.swift in Sources */,
+				CE162A6724B21D4500ADE769 /* AddRatingViewModel.swift in Sources */,
 				CE53F18923EDE1650066078B /* ProductDetailViewModel.swift in Sources */,
 				CE8E247A23ED95400079C0C7 /* ProductPublisher.swift in Sources */,
 				CEF95AB624A3EC24006FFD66 /* AddProductViewModel.swift in Sources */,
+				CE162A6924B21D5200ADE769 /* AddRatingView.swift in Sources */,
 				CEF653AD240694EB00432EFA /* osaid.swift in Sources */,
 				CE36AFE8240688AD004AF1AC /* ScannerView.swift in Sources */,
 				CEF95AB824A3EC2E006FFD66 /* AddProductView.swift in Sources */,

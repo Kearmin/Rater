@@ -33,29 +33,38 @@ struct ProductDetailView: View {
     
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ProductDetailHeaderRow(viewContent: self.viewModel.viewContent.productDetailHeader)
-                    .padding()
-                VStack(alignment: .leading, spacing: 12.0){
-                    if self.viewModel.viewContent.comments.count == 0 {
-                        Text("Még nincsenek kommentek :(")
-                    } else {
-                        ForEach(self.viewModel.viewContent.comments) { comment in
-                            ProductDetailCommentRow(viewContent: comment)
-                                .frame(minWidth: 0.0, maxWidth: .infinity, alignment: .leading)
-                                .padding(.bottom, 5.0)
+            ScrollView {
+                VStack {
+                    ProductDetailHeaderRow(viewContent: self.viewModel.viewContent.productDetailHeader)
+                        .padding()
+                    VStack(alignment: .leading, spacing: 12.0){
+                        if self.viewModel.viewContent.comments.count == 0 {
+                            Text("No rating to show")
+                        } else {
+                            ForEach(self.viewModel.viewContent.comments) { comment in
+                                ProductDetailCommentRow(viewContent: comment)
+                                    .frame(minWidth: 0.0, maxWidth: .infinity, alignment: .leading)
+                                    .padding(.bottom, 5.0)
+                            }
                         }
                     }
-                    Spacer()
+                    .padding()
                 }
-                .padding()
+                NavigationLink(destination: AddRatingFactory.createAddRating(productId: self.viewModel.productId)) {
+                    Text("Add new rating")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(width: 200.0, height: 40.0)
+                        .cornerRadius(8.0)
+                        .overlay(RoundedRectangle(cornerRadius: 8.0)
+                            .stroke(lineWidth: 1.0).foregroundColor(.black))
+                }
+                Spacer()
+                    .frame(height: 20.0)
+                .navigationBarTitle(Text("Értékelés"),displayMode: .inline)
             }
-        }
-        .navigationBarTitle(Text("Értékelés"),displayMode: .inline)
         .onAppear(perform: { self.viewModel.start() })
     }
-    
 }
 
 struct ProductDetailView_Previews: PreviewProvider {

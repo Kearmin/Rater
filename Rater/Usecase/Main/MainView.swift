@@ -24,7 +24,6 @@ struct MainView: View {
                 .tag(1)
             
             AddProducrFactory.createAddProduct()
-                .environmentObject(ScannerFlowData())
                 .tabItem {
                     Image(systemName: "plus")
                 }

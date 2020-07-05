@@ -24,9 +24,16 @@ class RatingPublisher {
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Ratings").observe(.value) { (snapshot) in
             print(snapshot.value as Any)
-            do {
-                //print(snapshot.value as Any)
-                var ratings = try FirebaseDecoder().decode([Rating].self, from: snapshot.value as Any)
+            
+            var ratings: [Rating]? = nil
+            
+            if let ratingsDict = try? FirebaseDecoder().decode([String:Rating?].self, from: snapshot.value as Any) {
+                ratings = ratingsDict.map { $0.1 }.compactMap{ $0 }
+            } else if let ratingsArray = try? FirebaseDecoder().decode([Rating?].self, from: snapshot.value as Any) {
+                ratings = ratingsArray.compactMap { $0 }
+            }
+            
+            if var ratings = ratings {
                 
                 ObjectContainer.sharedInstace.refIds.ratingId = ratings.map { $0.id }.max()!
                 
@@ -38,11 +45,14 @@ class RatingPublisher {
                 case .uploaderId:
                     ratings = ratings.filter { $0.uploaderId == id}
                 }
-        
-                subject.send(ratings)
                 
-            } catch let error {
-                subject.send(completion: .failure(error))
+                ratings = ratings.sorted(by: { (r1, r2) -> Bool in
+                    r1.id < r2.id
+                })
+                
+                subject.send(ratings)
+            } else {
+                subject.send(completion: .failure(AppError.undefined))
             }
         }
         
@@ -57,23 +67,36 @@ class RatingPublisher {
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Ratings").observe(.value) { (snapshot) in
             print(snapshot.value as Any)
-            do {
-                //print(snapshot.value as Any)
-                let ratings = try FirebaseDecoder().decode([Rating].self, from: snapshot.value as Any).filter({ $0.productId == id})
+            
+            var ratings: [Rating]? = nil
+            
+            if let ratingsDict = try? FirebaseDecoder().decode([String:Rating?].self, from: snapshot.value as Any) {
+                ratings = ratingsDict.map { $0.1 }.compactMap{ $0 }
+            } else if let ratingsArray = try? FirebaseDecoder().decode([Rating?].self, from: snapshot.value as Any) {
+                ratings = ratingsArray.compactMap { $0 }
+            }
+            
+            if var ratings = ratings {
+                
+                ratings = ratings.filter{ rating -> Bool in
+                    rating.productId == id
+                }
                 
                 let averageRating = Double(ratings.reduce(0) { $0 + $1.rating})
-                let count = Double(ratings.count)
+                let count = ratings.count
                 
                 if count < 1 {
                     subject.send(0.0)
+                } else if count == 1 {
+                    subject.send(Double(ratings.first!.rating))
                 } else {
-                    subject.send(averageRating/count)
+                    subject.send(averageRating/Double(count))
                 }
-
-            } catch let error {
-                print(error)
-                subject.send(completion: .failure(error))
+            } else {
+                subject.send(completion: .failure(AppError.undefined))
             }
+            
+            
         }
         
         let firebaseSubject = FireBaseSubject(subject: subject, handler: handle)

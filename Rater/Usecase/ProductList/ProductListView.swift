@@ -8,15 +8,14 @@
 
 import SwiftUI
 
-struct ProductListViewContent : Identifiable{
-    let id: String = UUID().uuidString
+struct ProductListViewContent{
     var rows: [ProductListRowViewContent]
 }
 
 struct ProductListView: View {
     
     @ObservedObject var viewModel: ProductListViewModel
-    
+    @EnvironmentObject var data: ScannerFlowData
     
     init(viewModel: ProductListViewModel) {
         
@@ -25,17 +24,29 @@ struct ProductListView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
-                TextField("Keresés", text: $viewModel.searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.leading,.trailing,.top], 10.0)
+            VStack {
+                HStack {
+                    TextField("Keresés", text: $viewModel.searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding([.leading,.trailing,.top], 10.0)
+                    NavigationLink(destination: ScannerView(viewModel: ScannerViewModel())) {
+                        Image(systemName: "camera")
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .background(Color.white)
+                            .frame(width: 30.0, height: 30.0)
+                            .padding([.trailing])
+                            .padding([.top], 7.0)
+                    }
+                }
                 
                 List (self.viewModel.viewContent.rows) { row in
                     NavigationLink(destination:
                         ProductDetailFactory.createProductDetail(with: row.id)
                     ) {
                         ProductListRow(content: row)
-                            .frame(width: nil, height: 120.0)
+                        //.frame(width: nil, height: 120.0)
                     }
                 }
                 .onAppear( perform: {self.viewModel.load()} )
@@ -47,6 +58,6 @@ struct ProductListView: View {
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(viewModel: ProductListViewModel(model: ProductListModel()))
+        ProductListView(viewModel: ProductListViewModel(model: ProductListModel(), scannerData: ScannerFlowData()))
     }
 }

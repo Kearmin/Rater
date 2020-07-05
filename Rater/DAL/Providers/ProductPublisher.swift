@@ -37,10 +37,17 @@ class ProductPublisher {
         
         let handle = ObjectContainer.sharedInstace.dbReference.child("Products").observe(.value) { (snapshot) in
             print(snapshot.value as Any)
-            do {
-                //print(snapshot.value as Any)
-                var products = try FirebaseDecoder().decode([Product].self, from: snapshot.value as Any)
-                
+            
+            var products: [Product]? = nil
+            
+            if let productsDict = try? FirebaseDecoder().decode([String:Product?].self, from: snapshot.value as Any) {
+                products = productsDict.map { $0.1 }.compactMap{ $0 }
+            } else if let productsArray = try? FirebaseDecoder().decode([Product?].self, from: snapshot.value as Any) {
+                products = productsArray.compactMap { $0 }
+            }
+            
+            if var products = products {
+            
                 ObjectContainer.sharedInstace.refIds.productId = products.map { $0.id }.max()!
                 
                 if let id = id {
@@ -54,12 +61,49 @@ class ProductPublisher {
                     }
                 }
                 
+                products = products.sorted(by: { (p1, p2) -> Bool in
+                    p1.id < p2.id
+                })
+                
                 subject.send(products)
-            } catch let error {
-                print(error)
-                subject.send(completion: .failure(error))
+            } else {
+                subject.send(completion: .failure(AppError.undefined))
             }
         }
+//
+//            do {
+//                //print(snapshot.value as Any)
+//                let productsDict = try FirebaseDecoder().decode([String:Product].self, from: snapshot.value as Any)
+//
+//                //let data = try JSONSerialization.data(withJSONObject: snapshot.value)
+//
+//                //let re = try JSONDecoder().decode([String: Product].self, from: data).compactMap { $0 }
+//
+//                var products = productsDict.map { $0.1 }
+//
+//                ObjectContainer.sharedInstace.refIds.productId = products.map { $0.id }.max()!
+//
+//                if let id = id {
+//                    switch type {
+//                    case .productId:
+//                        products = products.filter{ $0.id == id }
+//                    case .uploaderId:
+//                        products = products.filter{ $0.uploaderId == id }
+//                    default:
+//                        break
+//                    }
+//                }
+//
+//                products = products.sorted(by: { (p1, p2) -> Bool in
+//                    p1.id < p2.id
+//                })
+//
+//                subject.send(products)
+//            } catch let error {
+//                print(error)
+//                subject.send(completion: .failure(error))
+//            }
+//        }
         
         let firebaseSubject = FireBaseSubject(subject: subject, handler: handle)
         

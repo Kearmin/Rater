@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProductListRowViewContent: Identifiable {
     let id: Int
-    let image: Image
+    let imageUrl: URL?
     let name: String
 }
 
@@ -19,17 +20,16 @@ struct ProductListRow: View {
     var content: ProductListRowViewContent
     
     var body: some View {
-        HStack {
-            content.image
+        HStack(alignment: .top) {
+            WebImage(url: content.imageUrl)
                 .resizable()
+                .placeholder(Image("noImage"))
                 .frame(width: 100.0, height: 100.0, alignment: .leading)
             VStack(alignment: .leading){
                 Text(content.name)
                 .bold()
-                .font(.largeTitle)
-                .padding()
-                Spacer()
-                Text("500 Ft")
+                .font(.headline)
+                .lineLimit(nil)
                 .padding()
             }
             Spacer()
@@ -39,6 +39,6 @@ struct ProductListRow: View {
 
 struct ProductListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListRow(content: ProductListRowViewContent(id: 0, image: Image("E"), name: "hello")).previewLayout(.fixed(width: 300.0, height: 120.0))
+        ProductListRow(content: ProductListRowViewContent(id: 0, imageUrl: nil, name: "hello")).previewLayout(.fixed(width: 300.0, height: 120.0))
     }
 }

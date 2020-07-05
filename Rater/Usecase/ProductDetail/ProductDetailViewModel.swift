@@ -14,14 +14,14 @@ class ProductDetailViewModel: ObservableObject {
     
     @Published var viewContent =
         ProductDetailViewContent(commentsStaticText: "Kommentek",
-                                 productDetailHeader: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "", producetNameStaticText: "termék:", productName: "", descriptonStaticText: "leírás:", description: "", image: Image("E"), ratingStars: [0.0,0.0,0.0,0.0,0.0]),
+                                 productDetailHeader: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "", producetNameStaticText: "termék:", productName: "", descriptonStaticText: "leírás:", description: "", imageUrl: URL(string: "https://res.cloudinary.com/dk3njwejr/image/upload/v1593952619/h0guutudaeiehewiv2mb.jpg")!, ratingStars: [0.0,0.0,0.0,0.0,0.0]),
                                  comments: [])
     
     @Published var commenterIds = [Int]()
     
     private var ratings = [Rating]()
     
-    private var productId: Int
+    var productId: Int
     private var productDetailModel: ProductDetailModel
     private var subscriptions = Set<AnyCancellable>()
     
@@ -111,7 +111,7 @@ class ProductDetailViewModel: ObservableObject {
             ProductDetailCommentRowViewContent(starPercent: self.calculateStarCount(from: rating.rating), commenterName: "TEMP", commentTitle: rating.title, commentText: rating.text)
         }
         
-        let header = ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: product?.producer ?? "", producetNameStaticText: "termék:", productName: product?.name ?? "", descriptonStaticText: "leírás:", description: product?.description ?? "", image: Image("E"), ratingStars: calculateStarPercents(from: average))
+        let header = ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: product?.producer ?? "", producetNameStaticText: "termék:", productName: product?.name ?? "", descriptonStaticText: "leírás:", description: product?.description ?? "", imageUrl: product?.imageUrl, ratingStars: calculateStarPercents(from: average))
         
         
         self.commenterIds = ratings.map {  $0.uploaderId }

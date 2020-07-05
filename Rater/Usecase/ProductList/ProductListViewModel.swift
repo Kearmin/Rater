@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Cloudinary
 
 class ProductListViewModel: ObservableObject {
     
@@ -17,18 +18,26 @@ class ProductListViewModel: ObservableObject {
     @Published var searchText: String = ""
     
     private var usecasePublisher = CurrentValueSubject<[Product],Error>([])
+    private var scannerData: ScannerFlowData
     
     var model: ProductListModel
     
     private var subscriptions = Set<AnyCancellable>()
     
-    init(model: ProductListModel) {
+    init(model: ProductListModel, scannerData: ScannerFlowData) {
         self.model = model
+        self.scannerData = scannerData
         self.setupText()
         self.setupContentGenerator()
     }
 
     private func setupText(){
+        
+        self.scannerData.$barcode
+            .sink { barcode in
+                self.searchText = barcode
+            }
+            .store(in: &subscriptions)
         
         $searchText
             .dropFirst()
@@ -47,10 +56,18 @@ class ProductListViewModel: ObservableObject {
         self.usecasePublisher
             .map { products in
                 products.filter { (product) -> Bool in
-                    self.searchText != "" ?
-                        product.name
-                            .lowercased()
-                            .contains(self.searchText.lowercased()) : true
+                    
+                    if self.searchText != "" {
+                        if product.name.lowercased().contains(self.searchText.lowercased()) {
+                            return true
+                        }
+                        if let barcode = product.barcode, "\(barcode)".contains(self.searchText) {
+                            return true
+                        }
+                        return false
+                    } else {
+                        return true
+                    }
                 }
             }
             .map { (products) in
@@ -95,7 +112,7 @@ class ProductListViewModel: ObservableObject {
         var viewContent = ProductListViewContent(rows: [])
         
         _ = products.map({ product in
-            viewContent.rows.append(ProductListRowViewContent(id: product.id, image: Image("E"), name: product.name))
+            viewContent.rows.append(ProductListRowViewContent(id: product.id, imageUrl: product.imageUrl, name: product.name))
         })
         
         return viewContent

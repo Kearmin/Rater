@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import CodableFirebase
 import Combine
+import Cloudinary
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,9 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(name)
             }
             .store(in: &subscriptions)
-        
-//        FirebaseWriteOperations(databaseReference: Database.database().reference()).createProduct(product:
-//            Product(name: "testststst", id: 4, uploaderId: 999, producer: "valaki", description: "ASGDHASGDK", imageUrl: nil, category: .cosmetics, price: nil))
         
         return true
     }

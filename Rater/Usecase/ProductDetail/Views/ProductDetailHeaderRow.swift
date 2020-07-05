@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import SDWebImage
+import SDWebImageSwiftUI
 
 struct ProductDetailHeaderRowViewContent: Identifiable {
     let id: String
@@ -17,7 +19,7 @@ struct ProductDetailHeaderRowViewContent: Identifiable {
     let productName: String
     let descriptonStaticText: String
     let description: String
-    let image: Image
+    let imageUrl: URL?
     let ratingStars: [Double]
 }
 
@@ -41,9 +43,10 @@ struct ProductDetailHeaderRow: View {
             }
 
             HStack{
-                self.viewContent.image
+                WebImage(url: self.viewContent.imageUrl)
                     .resizable()
-                    .frame(width: 150.0, height: 150.0, alignment: .center)
+                    .placeholder(Image("noImage"))
+                    .frame(width: 130.0, height: 130.0, alignment: .center)
                     .cornerRadius(10.0)
                     .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.gray, lineWidth: 4.0))
                 Spacer()
@@ -62,6 +65,7 @@ struct ProductDetailHeaderRow: View {
                             .font(.headline)
                         Text(self.viewContent.productName)
                             .font(.headline)
+                            .lineLimit(nil)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -79,7 +83,7 @@ struct ProductDetailHeaderRow: View {
 
 struct ProductDetailHeaderRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailHeaderRow(viewContent: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "H&M", producetNameStaticText: "termék:", productName: "Lord Farquaad", descriptonStaticText: "leírás:", description: "Leírás Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ", image: Image("E"), ratingStars: [1.0,1.0,0.4,0.0,0.0]))
+        ProductDetailHeaderRow(viewContent: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "H&M", producetNameStaticText: "termék:", productName: "Lord Farquaad", descriptonStaticText: "leírás:", description: "Leírás Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ", imageUrl: nil, ratingStars: [1.0,1.0,0.4,0.0,0.0]))
             .previewLayout(.fixed(width: 400.0, height: 400.0))
     }
 }

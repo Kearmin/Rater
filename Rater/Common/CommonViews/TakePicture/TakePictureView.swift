@@ -11,36 +11,37 @@ import SwiftUI
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @Binding var isCoordinatorShown: Bool
-    @Binding var imageInCoordinator: Image?
+    @Binding var imageInCoordinator: UIImage?
     
-    init(isShown: Binding<Bool>, image: Binding<Image?>) {
-      _isCoordinatorShown = isShown
-      _imageInCoordinator = image
+    init(isShown: Binding<Bool>, image: Binding<UIImage?>) {
+        _isCoordinatorShown = isShown
+        _imageInCoordinator = image
     }
     
     func imagePickerController(_ picker: UIImagePickerController,
-                  didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-       guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-       imageInCoordinator = Image(uiImage: unwrapImage)
-       isCoordinatorShown = false
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        //imageInCoordinator = Image(uiImage: unwrapImage)
+        imageInCoordinator = unwrapImage
+        isCoordinatorShown = false
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-       isCoordinatorShown = false
+        isCoordinatorShown = false
     }
-
+    
 }
 
 extension TakePictureView: UIViewControllerRepresentable {
-
+    
     typealias UIViewControllerType = UIImagePickerController
-
+    
     func makeUIViewController(context: Context) -> UIImagePickerController {
-
+        
         let vc = UIImagePickerController()
         vc.delegate = context.coordinator
         vc.sourceType = .camera
-
+        
         return vc
     }
     
@@ -55,10 +56,10 @@ struct TakePictureView {
     
     
     @Binding var isShown: Bool
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     
     func makeCoordinator() -> Coordinator {
-      return Coordinator(isShown: $isShown, image: $image)
+        return Coordinator(isShown: $isShown, image: $image)
     }
-
+    
 }

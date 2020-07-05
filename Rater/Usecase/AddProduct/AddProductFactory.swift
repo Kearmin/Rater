@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AddProducrFactory {
-    static func createAddProduct() -> AddProductView {
+    static func createAddProduct() -> some View {
         
-        
+        let flowData = ScannerFlowData()
         let model = AddProductModel()
-        let viewModel = AddProductViewModel(model: model)
-        return  AddProductView(viewModel: viewModel)
+        let viewModel = AddProductViewModel(model: model, flowData: flowData)
+        return  AddProductView(viewModel: viewModel).environmentObject(flowData)
     }
 }

@@ -14,7 +14,7 @@ struct Product: Codable {
     let uploaderId: Int
     let producer: String
     let description: String
-    let imageUrl: String?
+    let imageUrl: URL?
     let category: Category
     let price: Double?
     let barcode: Int?

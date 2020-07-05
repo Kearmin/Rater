@@ -57,16 +57,21 @@ struct ProductDetailCommentRow: View {
 
 struct RatingStar: View {
     
-    let kBorderPercent: Double = 1.001
     let kMaxWidth: Double = 20.0
     let percent: Double
     
     var body: some View{
-        Image(systemName: "star.fill")
-            .foregroundColor(.yellow)
-            .overlay(Image(systemName: "star"))
-            .frame(width: (CGFloat(self.kMaxWidth * percent)), height: 20.0, alignment: .leading)
-            .clipShape(Rectangle())
+        ZStack(alignment: .leading) {
+            Image(systemName: "star.fill")
+                .foregroundColor(.yellow)
+                .overlay(Image(systemName: "star"))
+                .frame(width: (CGFloat(self.kMaxWidth * percent)), height: 20.0, alignment: .leading)
+                .clipShape(Rectangle())
+            Image(systemName: "star.fill")
+                .frame(width: (CGFloat(self.kMaxWidth)), height: 20.0, alignment: .leading)
+                .foregroundColor(.gray)
+                .opacity(0.3)
+        }
     }
 }
 

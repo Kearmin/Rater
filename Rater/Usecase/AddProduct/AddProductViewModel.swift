@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Cloudinary
+import Combine
 import SwiftUI
 
 class AddProductViewModel: ObservableObject {
@@ -14,24 +16,61 @@ class AddProductViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var producer: String = ""
     @Published var description: String = ""
-    @Published var productImage: Image = Image("E")
+    @Published var productImage: UIImage? = UIImage(named: "noImage")
+    @Published var isEditing: Bool = false
+    @Published var isLoading: Bool = false
+    
+    private var subscriptions = Set<AnyCancellable>()
+    private var flowData: ScannerFlowData
     
     private let addProductModel: AddProductModel
     
     func createNewItem(barcode: String) {
         
-        let product = Product(name: name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: ObjectContainer.sharedInstace.user.id, producer: producer, description: description, imageUrl: nil, category: .undefined, price: nil, barcode: Int(barcode))
+        guard let image = productImage else { return }
         
-        self.addProductModel.createProduct(product: product)
+        self.isLoading = true
         
-        ObjectContainer.sharedInstace.refIds.productId += 1      
+        self.addProductModel.saveImage(image)
+            .sink(receiveCompletion: { Result in
+                print(Result)
+            }) { imageUrl in
+                
+                let product = Product(name: self.name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: ObjectContainer.sharedInstace.user.id, producer: self.producer, description: self.description, imageUrl: imageUrl, category: .undefined, price: nil, barcode: Int(barcode))
+                self.addProductModel.createProduct(product: product)
+                ObjectContainer.sharedInstace.refIds.productId += 1
+                
+                self.name = ""
+                self.producer = ""
+                self.description = ""
+                self.flowData.barcode = ""
+                self.productImage = UIImage(named: "noImage")
+                
+                UIApplication.shared.endEditing()
+                self.isLoading = false
+            }
+            .store(in: &subscriptions)
     }
     
     func takePicture() {
         print("take picture")
+        
+        let config = CLDConfiguration(cloudName: "CLOUD_NAME", secure: true)
+        let cloudinary = CLDCloudinary(configuration: config)
+        
+        let request = cloudinary.createUploader().upload(
+            url: URL(string: "")!, uploadPreset: "samplePreset") { (response, error) in
+            // Handle response
+                
+            print(response)
+            
+        }
+
+        
     }
     
-    init(model: AddProductModel) {
+    init(model: AddProductModel, flowData: ScannerFlowData) {
         self.addProductModel = model
+        self.flowData = flowData
     }
 }
