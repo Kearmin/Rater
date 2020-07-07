@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UserCommentRowContent: Identifiable {
     let id: String = UUID().uuidString
-    let image: Image
+    let imageUrl: URL?
     let productName: String
     let commentText: String
+    let rating: Int
 }
 
 struct UserCommentRow: View {
@@ -22,15 +24,26 @@ struct UserCommentRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8.0) {
             HStack(spacing: 5.0) {
-                Image("E")
+                WebImage(url: self.content.imageUrl)
                     .resizable()
+                    .placeholder(Image("noImage"))
                     .cornerRadius(10.0)
                     .overlay(RoundedRectangle(cornerRadius: 10.0).stroke(Color.gray, lineWidth: 1.0))
                     .frame(width: 65, height: 65, alignment: .leading)
-                Text(content.productName)
-                    .bold()
-                    .lineLimit(nil)
-                    .frame(width: nil, height: nil, alignment: .topLeading)
+                VStack(alignment: .leading) {
+                    HStack {
+                        RatingStar(percent: 1.0)
+                        RatingStar(percent: content.rating > 1 ? 1.0 : 0.0)
+                        RatingStar(percent: content.rating > 2 ? 1.0 : 0.0)
+                        RatingStar(percent: content.rating > 3 ? 1.0 : 0.0)
+                        RatingStar(percent: content.rating > 4 ? 1.0 : 0.0)
+                    }
+                    Text(content.productName)
+                        .bold()
+                        .lineLimit(nil)
+                        .frame(width: nil, height: nil, alignment: .topLeading)
+                }
+
             }
             Text(content.commentText)
             .lineLimit(nil)
@@ -40,6 +53,6 @@ struct UserCommentRow: View {
 
 struct UserCommentRow_Previews: PreviewProvider {
     static var previews: some View {
-        UserCommentRow(content: UserCommentRowContent(image: Image("E"), productName: "alkshdjkashdjkahsjkdhaskdhakjshd", commentText: "asdhkashkjashjkfhasjfhjkashfkjashfjkasjkgasjkgjkaskhagsfhgashfgasjhfg"))
+        UserCommentRow(content: UserCommentRowContent(imageUrl: nil, productName: "alkshdjkashdjkahsjkdhaskdhakjshd", commentText: "asdhkashkjashjkfhasjfhjkashfkjashfjkasjkgasjkgjkaskhagsfhgashfgasjhfg", rating: 3))
     }
 }

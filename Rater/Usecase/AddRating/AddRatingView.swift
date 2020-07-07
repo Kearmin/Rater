@@ -51,6 +51,11 @@ struct AddRatingView: View {
             .buttonStyle(PlainButtonStyle())
             Spacer()
         }
+        .alert(isPresented: self.$viewModel.isError) { () -> Alert in
+            Alert(title: Text(""), message: Text(self.viewModel.errorMessage), dismissButton: .default(Text("Okay"), action: {
+                UIApplication.shared.endEditing()
+            }))
+        }
         .navigationBarTitle(Text("Add rating"),displayMode: .inline)
         .padding()
     }

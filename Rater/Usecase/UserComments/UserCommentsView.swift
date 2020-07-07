@@ -25,7 +25,6 @@ struct UserCommentsView: View {
                     .padding()
             }
         }
-        .navigationBarTitle("Hello")
         .padding(.all, 2.0)
         .onAppear(perform: {
             self.viewModel.fetch()
@@ -35,6 +34,6 @@ struct UserCommentsView: View {
 
 struct UserCommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        UserCommentsView(viewModel: UserCommentViewModel(model: UserCommentModel(), id: 0))
+        UserCommentsView(viewModel: UserCommentViewModel(model: UserCommentModel(), id: 0, userName: "Jenci"))
     }
 }

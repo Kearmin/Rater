@@ -15,4 +15,9 @@ class UserCommentModel {
         
         return RatingPublisher.allRating(for: id, type: .uploaderId).subject.eraseToAnyPublisher()
     }
+    
+    func getId(for name: String) -> AnyPublisher<Int, AppError> {
+        return UserPublisher().userId(for: name).subject.eraseToAnyPublisher()
+    }
+    
 }

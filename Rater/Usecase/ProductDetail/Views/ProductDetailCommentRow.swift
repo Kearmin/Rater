@@ -27,7 +27,7 @@ struct ProductDetailCommentRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5.0){
             HStack(spacing: 10.0){
-                NavigationLink(destination: UserCommentFactory.createUserComment(id: self.selectedId ?? 0), label: {
+                NavigationLink(destination: UserCommentFactory.createUserComment(id: self.selectedId ?? 0, userName: viewContent.commenterName), label: {
                     Text(self.viewContent.commenterName)
                         .foregroundColor(.gray)
                         .fixedSize()
@@ -48,9 +48,6 @@ struct ProductDetailCommentRow: View {
                 
                 Text(viewContent.commentText)
             }
-        }
-        .sheet(isPresented: $showModal) {
-            UserCommentFactory.createUserComment(id: self.selectedId ?? 0)
         }
     }
 }

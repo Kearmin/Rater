@@ -78,6 +78,11 @@ struct AddProductView: View {
                         .zIndex(2.0)
                 }
             }
+            .alert(isPresented: self.$viewModel.isError) { () -> Alert in
+                Alert(title: Text(""), message: Text(self.viewModel.errorMessage), dismissButton: .default(Text("Okay"), action: {
+                    UIApplication.shared.endEditing()
+                }))
+            }
             .navigationBarTitle("Add New Item", displayMode: .inline)
         }
     }

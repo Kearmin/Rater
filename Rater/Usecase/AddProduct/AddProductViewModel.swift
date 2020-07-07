@@ -19,6 +19,8 @@ class AddProductViewModel: ObservableObject {
     @Published var productImage: UIImage? = UIImage(named: "noImage")
     @Published var isEditing: Bool = false
     @Published var isLoading: Bool = false
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
     
     private var subscriptions = Set<AnyCancellable>()
     private var flowData: ScannerFlowData
@@ -29,14 +31,20 @@ class AddProductViewModel: ObservableObject {
         
         guard let image = productImage else { return }
         
+        guard let user = ObjectContainer.sharedInstace.user else {
+            self.isError = true
+            self.errorMessage = "Please log in to post a new product"
+            return
+        }
+        
         self.isLoading = true
         
         self.addProductModel.saveImage(image)
             .sink(receiveCompletion: { Result in
                 print(Result)
             }) { imageUrl in
-                
-                let product = Product(name: self.name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: ObjectContainer.sharedInstace.user.id, producer: self.producer, description: self.description, imageUrl: imageUrl, category: .undefined, price: nil, barcode: Int(barcode))
+
+                let product = Product(name: self.name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: user.id, producer: self.producer, description: self.description, imageUrl: imageUrl, category: .undefined, price: nil, barcode: Int(barcode))
                 self.addProductModel.createProduct(product: product)
                 ObjectContainer.sharedInstace.refIds.productId += 1
                 

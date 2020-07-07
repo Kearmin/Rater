@@ -29,6 +29,7 @@ struct ProductListView: View {
                     TextField("Keresés", text: $viewModel.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding([.leading,.trailing,.top], 10.0)
+                        .disableAutocorrection(true)
                     NavigationLink(destination: ScannerView(viewModel: ScannerViewModel())) {
                         Image(systemName: "camera")
                             .renderingMode(.original)

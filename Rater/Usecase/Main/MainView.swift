@@ -17,7 +17,7 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            Text("Profile")
+            LoginFactory.createLoginView()
                 .tabItem({
                     Image(systemName: "person")
                 })
@@ -28,13 +28,6 @@ struct MainView: View {
                     Image(systemName: "plus")
                 }
                 .tag(2)
-            
-            osaid()
-                .environmentObject(ScannerFlowData())
-                .tabItem({
-                    Text("Hello")
-                })
-                .tag(3)
         }
     }
 }

@@ -13,6 +13,8 @@ class AddRatingViewModel: ObservableObject {
     @Published var description: String = ""
     @Published var title: String = ""
     @Published var currentRating: Int = 1
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
     
     let productId: Int
     let model: AddRatingModel
@@ -28,7 +30,13 @@ class AddRatingViewModel: ObservableObject {
     
     func createRating() {
         
-        let rating = Rating(text: self.description, uploaderId: ObjectContainer.sharedInstace.user.id, rating: self.currentRating, id: ObjectContainer.sharedInstace.refIds.ratingId, productId: self.productId, title: self.title)
+        guard let user = ObjectContainer.sharedInstace.user else {
+            self.isError = true
+            self.errorMessage = "Please log in to post Ratings"
+            return
+        }
+        
+        let rating = Rating(text: self.description, uploaderId: user.id, rating: self.currentRating, id: ObjectContainer.sharedInstace.refIds.ratingId, productId: self.productId, title: self.title)
         self.model.createRating(rating: rating)
         ObjectContainer.sharedInstace.refIds.ratingId += 1
     }
