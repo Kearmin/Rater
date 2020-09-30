@@ -10,7 +10,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct UserCommentRowContent: Identifiable {
-    let id: String = UUID().uuidString
+    let id: Int
     let imageUrl: URL?
     let productName: String
     let commentText: String
@@ -53,6 +53,6 @@ struct UserCommentRow: View {
 
 struct UserCommentRow_Previews: PreviewProvider {
     static var previews: some View {
-        UserCommentRow(content: UserCommentRowContent(imageUrl: nil, productName: "alkshdjkashdjkahsjkdhaskdhakjshd", commentText: "asdhkashkjashjkfhasjfhjkashfkjashfjkasjkgasjkgjkaskhagsfhgashfgasjhfg", rating: 3))
+        UserCommentRow(content: UserCommentRowContent(id: 0, imageUrl: nil, productName: "alkshdjkashdjkahsjkdhaskdhakjshd", commentText: "asdhkashkjashjkfhasjfhjkashfkjashfjkasjkgasjkgjkaskhagsfhgashfgasjhfg", rating: 3))
     }
 }

@@ -11,26 +11,28 @@ import Combine
 
 class LoginModel {
     
-    let provider = UserPublisher()
-    let writeProvider: FirebaseWriteOperations
+    let userService = UserService()
     
     init() {
-        self.writeProvider = FirebaseWriteOperations.init(databaseReference: ObjectContainer.sharedInstace.dbReference)
     }
     
-    func login(username: String, password: String) -> AnyPublisher<Bool, AppError>{
-        return self.provider.loginUser(username: username, password: password).subject.eraseToAnyPublisher()
-    }
-    
-    func canSignUp(username: String) -> AnyPublisher<Bool, AppError> {
-        return self.provider.canSignUp(username: username).subject.eraseToAnyPublisher()
-    }
-    
-    func signUp(username: String, password: String) {
+    func logout() -> AnyPublisher<Void, Error> {
         
-        let user = User(id: ObjectContainer.sharedInstace.refIds.userId + 1, accountName: username, password: password)
-        self.writeProvider.createUser(user: user)
-        ObjectContainer.sharedInstace.refIds.userId += 1
+        userService.logout()
+    }
+    
+    func login(username: String, password: String) -> AnyPublisher<Token, Error> {
+
+        userService.login(username: username, password: password)
+    }
+
+    func signUp(username: String, password: String) -> AnyPublisher<User, Error> {
+        
+        userService.signUp(username: username, password: password)
+    }
+    
+    func me() -> AnyPublisher<User, Error> {
+        userService.me()
     }
     
 }

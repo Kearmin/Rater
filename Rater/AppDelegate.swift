@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CodableFirebase
 import Combine
 import Cloudinary
 
@@ -18,20 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var subscriptions = Set<AnyCancellable>()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
-        
-        UserNamePublisher.userName(for: 2).subject
-            .print()
-            .eraseToAnyPublisher()
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }) { name in
-                print(name)
-            }
-            .store(in: &subscriptions)
-        
+            
         return true
     }
     

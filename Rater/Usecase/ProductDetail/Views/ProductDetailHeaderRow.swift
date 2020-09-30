@@ -11,7 +11,7 @@ import SDWebImage
 import SDWebImageSwiftUI
 
 struct ProductDetailHeaderRowViewContent: Identifiable {
-    let id: String
+    let id: Int
     let title: String
     let productMakerStaticText: String
     let productMaker: String
@@ -83,7 +83,7 @@ struct ProductDetailHeaderRow: View {
 
 struct ProductDetailHeaderRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailHeaderRow(viewContent: ProductDetailHeaderRowViewContent(id: UUID().uuidString, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "H&M", producetNameStaticText: "termék:", productName: "Lord Farquaad", descriptonStaticText: "leírás:", description: "Leírás Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ", imageUrl: nil, ratingStars: [1.0,1.0,0.4,0.0,0.0]))
+        ProductDetailHeaderRow(viewContent: ProductDetailHeaderRowViewContent(id: 0, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "H&M", producetNameStaticText: "termék:", productName: "Lord Farquaad", descriptonStaticText: "leírás:", description: "Leírás Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ", imageUrl: nil, ratingStars: [1.0,1.0,0.4,0.0,0.0]))
             .previewLayout(.fixed(width: 400.0, height: 400.0))
     }
 }

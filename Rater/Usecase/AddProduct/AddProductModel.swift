@@ -12,20 +12,20 @@ import Combine
 
 class AddProductModel {
     
-    let provider: FirebaseWriteOperations
     let imageProvider: ImageProvider
     
+    let productService = ProductService()
+    
+    
     init() {
-        self.provider = FirebaseWriteOperations(databaseReference: ObjectContainer.sharedInstace.dbReference)
         self.imageProvider = ImageProvider()
     }
     
-    func createProduct(product: Product) {
-        self.provider.createProduct(product: product)
+    func createProduct(product: Product) -> AnyPublisher<Product, Error> {
+        return productService.createProduct(product: product)
     }
     
-    func saveImage(_ image: UIImage) -> AnyPublisher<URL, AppError> {
+    func saveImage(_ image: UIImage) -> AnyPublisher<URL, Error> {
         return ImageProvider.saveImage(image)
     }
-    
 }

@@ -14,10 +14,10 @@ import Combine
 
 class ImageProvider {
 
-    static func saveImage(_ image: UIImage) -> AnyPublisher<URL, AppError> {
+    static func saveImage(_ image: UIImage) -> AnyPublisher<URL, Error> {
         
         let preset = "nmdxvdgn"
-        let passthroughSubject = PassthroughSubject<URL, AppError>()
+        let passthroughSubject = PassthroughSubject<URL, Error>()
         
         let data = image.jpegData(compressionQuality: 0.5)!
         let _ = ObjectContainer.sharedInstace.cloudinary.createUploader().upload(data: data, uploadPreset: preset) { response, error in

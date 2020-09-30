@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct ProductDetailCommentRowViewContent: Identifiable {
-    let id: String = UUID().uuidString
+    let id: UUID = UUID()
     let starPercent: [Double]
     var commenterName: String
     let commentTitle: String
     let commentText: String
+    let commenterId: Int
 }
 
 struct ProductDetailCommentRow: View {
@@ -27,7 +28,7 @@ struct ProductDetailCommentRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5.0){
             HStack(spacing: 10.0){
-                NavigationLink(destination: UserCommentFactory.createUserComment(id: self.selectedId ?? 0, userName: viewContent.commenterName), label: {
+                NavigationLink(destination: UserCommentFactory.createUserComment(id: self.selectedId ?? 0, userName: viewContent.commenterName, commenterId: viewContent.commenterId), label: {
                     Text(self.viewContent.commenterName)
                         .foregroundColor(.gray)
                         .fixedSize()
@@ -74,7 +75,7 @@ struct RatingStar: View {
 
 struct ProductDetailCommentRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductDetailCommentRow(viewContent: ProductDetailCommentRowViewContent(starPercent: [1.0,1.0,1.0,1.0,0.44], commenterName: "Arminous", commentTitle: "Nagyon jó!!!", commentText: "Amióta ezt a terméket használom azt se tudom mi van velem, Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"))
+        ProductDetailCommentRow(viewContent: ProductDetailCommentRowViewContent(starPercent: [1.0,1.0,1.0,1.0,0.44], commenterName: "Arminous", commentTitle: "Nagyon jó!!!", commentText: "Amióta ezt a terméket használom azt se tudom mi van velem, Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum", commenterId: 0))
             .previewLayout(.fixed(width: 450, height: 150))
     }
 }

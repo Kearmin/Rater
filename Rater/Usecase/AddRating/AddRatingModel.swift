@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import Combine
 
 class AddRatingModel {
     
-    let provider: FirebaseWriteOperations
+    let ratingService = RatingService()
 
     init() {
-        self.provider = FirebaseWriteOperations(databaseReference: ObjectContainer.sharedInstace.dbReference)
     }
-    
-    func createRating(rating: Rating) {
-        self.provider.createRating(rating: rating)
+        
+    func createRating(rating: Rating) -> AnyPublisher<RatingDetail, Error> {
+
+        return ratingService.createRating(rating: rating)
     }
     
 }

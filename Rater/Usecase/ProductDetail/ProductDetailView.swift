@@ -24,11 +24,6 @@ struct ProductDetailView: View {
     init(viewModel: ProductDetailViewModel) {
         
         self.viewModel = viewModel
-        //        // To remove only extra separators below the list:
-        //        UITableView.appearance().tableFooterView = UIView()
-        //
-        //        // To remove all separators including the actual ones:
-        //        UITableView.appearance().separatorStyle = .none
     }
     
     

@@ -23,7 +23,7 @@ class ScannerViewModel: ObservableObject {
     }
     
     @objc func handleBarcode(_ notification: Notification){
-        print(notification.userInfo?["code"])
+        print(notification.userInfo?["code"] as Any)
         self.finishPublisher.send(notification.userInfo!["code"]! as! String)
     }
     

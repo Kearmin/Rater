@@ -40,8 +40,10 @@ struct LoginView: View {
                 
                 TextField("Username", text: self.$viewModel.username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Password", text: self.$viewModel.password)
+                SecureField("Password", text: self.$viewModel.password)
+                    
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
                 Group {
                     Button(action: {
                         self.viewModel.login()

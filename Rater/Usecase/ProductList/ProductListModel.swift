@@ -11,12 +11,29 @@ import Combine
 
 class ProductListModel {
     
-    func getAllProducts() -> AnyPublisher<[Product], Error> {
+    let pageService = PageService()
+    var afterId: Int?
+    var shouldLoad = true
+    
+    func getAllProducts(searchString: String? = nil) -> AnyPublisher<[Product], Error> {
         
-        let productPublisher = ProductPublisher.allProduct(id: nil, type: .productId).subject
+        if shouldLoad == false {
+            return Just<[Product]>([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
         
-        return productPublisher
-            .share()
+        return pageService.getAllProduct(searchText: searchString, afterId: afterId, userId: nil)
+            .map { products -> [Product] in
+                if let last = products.last {
+                    self.afterId = last.id
+                }
+                return products
+            }
+            .map { products in
+                if products.isEmpty == true {
+                    self.shouldLoad = false
+                }
+                return products
+            }
             .eraseToAnyPublisher()
     }
 }

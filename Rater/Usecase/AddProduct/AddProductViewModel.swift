@@ -40,41 +40,25 @@ class AddProductViewModel: ObservableObject {
         self.isLoading = true
         
         self.addProductModel.saveImage(image)
-            .sink(receiveCompletion: { Result in
-                print(Result)
-            }) { imageUrl in
-
-                let product = Product(name: self.name, id: ObjectContainer.sharedInstace.refIds.productId + 1, uploaderId: user.id, producer: self.producer, description: self.description, imageUrl: imageUrl, category: .undefined, price: nil, barcode: Int(barcode))
-                self.addProductModel.createProduct(product: product)
-                ObjectContainer.sharedInstace.refIds.productId += 1
-                
-                self.name = ""
-                self.producer = ""
-                self.description = ""
-                self.flowData.barcode = ""
-                self.productImage = UIImage(named: "noImage")
-                
-                UIApplication.shared.endEditing()
-                self.isLoading = false
-            }
-            .store(in: &subscriptions)
-    }
-    
-    func takePicture() {
-        print("take picture")
-        
-        let config = CLDConfiguration(cloudName: "CLOUD_NAME", secure: true)
-        let cloudinary = CLDCloudinary(configuration: config)
-        
-        let request = cloudinary.createUploader().upload(
-            url: URL(string: "")!, uploadPreset: "samplePreset") { (response, error) in
-            // Handle response
-                
-            print(response)
-            
+            .flatMap { imageUrl in
+                self.addProductModel.createProduct(product: Product(name: self.name, id: -1, uploaderId: user.id, producer: self.producer, description: self.description, imageUrl: imageUrl, barcode: barcode))
         }
-
-        
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { result in
+            print(result)
+        }) { (product) in
+            self.name = ""
+            self.producer = ""
+            self.description = ""
+            self.flowData.barcode = ""
+            self.productImage = UIImage(named: "noImage")
+            
+            UIApplication.shared.endEditing()
+            self.isLoading = false
+            self.errorMessage = "Success"
+            self.isError = true
+        }
+        .store(in: &subscriptions)
     }
     
     init(model: AddProductModel, flowData: ScannerFlowData) {

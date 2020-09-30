@@ -9,11 +9,11 @@
 import Foundation
 
 class UserCommentFactory {
-    static func createUserComment(id: Int, userName: String) -> UserCommentsView {
+    static func createUserComment(id: Int, userName: String, commenterId: Int) -> UserCommentsView {
         
         
         let model = UserCommentModel()
-        let viewModel = UserCommentViewModel(model: model, id: id, userName: userName)
+        let viewModel = UserCommentViewModel(model: model, id: id, userName: userName, commenterId: commenterId)
         return  UserCommentsView(viewModel: viewModel)
     }
 }

@@ -15,9 +15,7 @@ struct Product: Codable {
     let producer: String
     let description: String
     let imageUrl: URL?
-    let category: Category
-    let price: Double?
-    let barcode: Int?
+    let barcode: String
 }
 
 enum Category: Int, Codable {

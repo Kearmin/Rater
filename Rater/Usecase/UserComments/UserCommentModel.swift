@@ -11,13 +11,11 @@ import Combine
 
 class UserCommentModel {
     
-    func getComments(id: Int) -> AnyPublisher<[Rating],Error> {
-        
-        return RatingPublisher.allRating(for: id, type: .uploaderId).subject.eraseToAnyPublisher()
-    }
+    let pageSize = 999
+    var lastId: Int? = nil
+    let pageService = PageService()
     
-    func getId(for name: String) -> AnyPublisher<Int, AppError> {
-        return UserPublisher().userId(for: name).subject.eraseToAnyPublisher()
+    func load(id: Int) -> AnyPublisher<[UserComment], Error> {
+        return pageService.getUserRatings(userId: id, pageSize: pageSize, afterId: lastId)
     }
-    
 }

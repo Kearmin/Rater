@@ -47,10 +47,13 @@ struct ProductListView: View {
                         ProductDetailFactory.createProductDetail(with: row.id)
                     ) {
                         ProductListRow(content: row)
-                        //.frame(width: nil, height: 120.0)
+                            .onAppear {
+                                if row.isLast {
+                                    self.viewModel.load()
+                                }
+                        }
                     }
                 }
-                .onAppear( perform: {self.viewModel.load()} )
                 .navigationBarTitle(Text("Keresés"),displayMode: .inline)
             }
         }

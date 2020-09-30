@@ -27,13 +27,14 @@ struct UserCommentsView: View {
         }
         .padding(.all, 2.0)
         .onAppear(perform: {
-            self.viewModel.fetch()
+            self.viewModel.load()
         })
+        .navigationBarTitle(Text(self.viewModel.userName), displayMode: .inline)
     }
 }
 
 struct UserCommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        UserCommentsView(viewModel: UserCommentViewModel(model: UserCommentModel(), id: 0, userName: "Jenci"))
+        UserCommentsView(viewModel: UserCommentViewModel(model: UserCommentModel(), id: 0, userName: "Jenci", commenterId: 0))
     }
 }

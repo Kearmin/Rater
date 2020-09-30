@@ -28,67 +28,78 @@ class LoginViewModel: ObservableObject {
     }
     
     func logOut() {
-        ObjectContainer.sharedInstace.user = nil
-        self.loggedInUser = nil
-        self.username = ""
-        self.password = ""
+                
+        model.logout()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                    self.isError = true
+                default:
+                    break
+                }
+            }) { _ in
+                ObjectContainer.sharedInstace.user = nil
+                self.loggedInUser = nil
+                self.username = ""
+                self.password = ""
+        }
+        .store(in: &subscriptions)
     }
     
     func login() {
         
-        if self.username.count < 3 || self.password.count < 3 {
+        if self.username.count < 3 || self.password.count < 6 {
             self.isError = true
-            self.errorMessage = "Username and password should be at least 3 char long"
+            self.errorMessage = "Username should at least 3 and password should be at least 6 char long"
             return
         }
         
-        self.model.login(username: self.username, password: self.password)
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }) { isValid in
-                if isValid {
-                    guard let user = ObjectContainer.sharedInstace.user else {
-                        return
-                    }
-                    self.loggedInUser = user.accountName
-                } else {
-                    self.isError = true
-                    self.errorMessage = "Invalid username or password"
-                }
+        model.login(username: username, password: password)
+            .map { token -> Token in
+                ObjectContainer.sharedInstace.token = token
+                return token
             }
-            .store(in: &subscriptions)
-    }
-    
-    func canSignUp() {
-        
-        if self.username.count < 3 || self.password.count < 3 {
-            self.isError = true
-            self.errorMessage = "Username and password should be at least 3 char long"
-            return
+        .flatMap { _ in
+            self.model.me()
         }
-        
-        self.model.canSignUp(username: self.username)
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }) { canSignup in
-                if canSignup {
-                    self.signUp()
-                } else {
-                    self.showAlreadySignedUp()
-                }
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { (result) in
+            switch result {
+            case .failure(let error):
+                self.isError = true
+                self.errorMessage = error.localizedDescription
+            default:
+                break
             }
-            .store(in: &subscriptions)
+        }) { user in
+            self.loggedInUser = user.accountName
+            ObjectContainer.sharedInstace.user = user
+        }
+        .store(in: &subscriptions)
     }
     
-    func showAlreadySignedUp() {
-        self.isError = true
-        self.errorMessage = "Already signed up"
-    }
+//    func showAlreadySignedUp() {
+//        self.isError = true
+//        self.errorMessage = "Already signed up"
+//    }
     
     func signUp() {
         self.model.signUp(username: self.username, password: self.password)
-        self.errorMessage = "Successful signed up, please log in"
-        self.isError = true
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                    self.isError = true
+                default:
+                    break
+                }
+            }) { _ in
+                self.errorMessage = "Successful signed up, please log in"
+                self.isError = true
+        }
+        .store(in: &subscriptions)
     }
-    
 }

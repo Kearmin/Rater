@@ -13,6 +13,7 @@ struct ProductListRowViewContent: Identifiable {
     let id: Int
     let imageUrl: URL?
     let name: String
+    let isLast: Bool
 }
 
 struct ProductListRow: View {
@@ -39,6 +40,6 @@ struct ProductListRow: View {
 
 struct ProductListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListRow(content: ProductListRowViewContent(id: 0, imageUrl: nil, name: "hello")).previewLayout(.fixed(width: 300.0, height: 120.0))
+        ProductListRow(content: ProductListRowViewContent(id: 0, imageUrl: nil, name: "hello", isLast: false)).previewLayout(.fixed(width: 300.0, height: 120.0))
     }
 }

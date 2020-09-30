@@ -29,6 +29,7 @@ class ProductListViewModel: ObservableObject {
         self.scannerData = scannerData
         self.setupText()
         self.setupContentGenerator()
+        self.load()
     }
 
     private func setupText(){
@@ -61,7 +62,7 @@ class ProductListViewModel: ObservableObject {
                         if product.name.lowercased().contains(self.searchText.lowercased()) {
                             return true
                         }
-                        if let barcode = product.barcode, "\(barcode)".contains(self.searchText) {
+                        if "\(product.barcode)".contains(self.searchText) {
                             return true
                         }
                         return false
@@ -73,11 +74,11 @@ class ProductListViewModel: ObservableObject {
             .map { (products) in
                 self.createViewContent(from: products)
             }
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (error) in
                 print(error)
             }) { (content) in
                 self.viewContent = content
-                print(content)
             }
             .store(in: &subscriptions)
         
@@ -89,22 +90,10 @@ class ProductListViewModel: ObservableObject {
             .sink(receiveCompletion: { (error) in
                 print(error)
             }) { (products) in
-                self.usecasePublisher.value = products
+                guard products.isEmpty == false else { return }
+                self.usecasePublisher.value = self.usecasePublisher.value + products
             }
             .store(in: &subscriptions)
-        
-        
-//        self.model.getAllProducts()
-//            .map { (products) in
-//                self.createViewContent(from: products)
-//            }
-//            .sink(receiveCompletion: { (error) in
-//                print(error)
-//            }) { (content) in
-//                self.viewContent = content
-//                print(content)
-//            }
-//            .store(in: &subscriptions)
     }
     
     private func createViewContent(from products: [Product]) -> ProductListViewContent {
@@ -112,7 +101,7 @@ class ProductListViewModel: ObservableObject {
         var viewContent = ProductListViewContent(rows: [])
         
         _ = products.map({ product in
-            viewContent.rows.append(ProductListRowViewContent(id: product.id, imageUrl: product.imageUrl, name: product.name))
+            viewContent.rows.append(ProductListRowViewContent(id: product.id, imageUrl: product.imageUrl, name: product.name, isLast: product.id == products.last!.id))
         })
         
         return viewContent
