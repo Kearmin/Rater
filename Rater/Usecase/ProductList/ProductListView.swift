@@ -26,7 +26,7 @@ struct ProductListView: View {
         NavigationView {
             VStack {
                 HStack {
-                    TextField("Keresés", text: $viewModel.searchText)
+                    TextField("Search", text: $viewModel.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding([.leading,.trailing,.top], 10.0)
                         .disableAutocorrection(true)
@@ -42,19 +42,24 @@ struct ProductListView: View {
                     }
                 }
                 
-                List (self.viewModel.viewContent.rows) { row in
-                    NavigationLink(destination:
-                        ProductDetailFactory.createProductDetail(with: row.id)
-                    ) {
-                        ProductListRow(content: row)
-                            .onAppear {
-                                if row.isLast {
-                                    self.viewModel.load()
+                List () {
+                    ForEach(viewModel.viewContent.rows) { row in
+                        NavigationLink(destination:
+                                        ProductDetailFactory.createProductDetail(with: row.id)
+                        ) {
+                            ProductListRow(content: row)
+                               
+                                .onAppear {
+                                    if row.isLast {
+                                        self.viewModel.load(with: viewModel.searchText, refresh: false)
+                                    }
                                 }
+    
                         }
                     }
                 }
-                .navigationBarTitle(Text("Keresés"),displayMode: .inline)
+                .listStyle(PlainListStyle())
+                .navigationBarTitle(Text("Search"),displayMode: .inline)
             }
         }
     }

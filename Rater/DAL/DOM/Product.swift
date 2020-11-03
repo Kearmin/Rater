@@ -36,3 +36,9 @@ extension Category {
         return self.rawValue
     }
 }
+
+extension Product: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}

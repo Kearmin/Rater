@@ -13,8 +13,8 @@ import Combine
 class ProductDetailViewModel: ObservableObject {
     
     @Published var viewContent =
-        ProductDetailViewContent(commentsStaticText: "Kommentek",
-                                 productDetailHeader: ProductDetailHeaderRowViewContent(id: 0, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: "", producetNameStaticText: "termék:", productName: "", descriptonStaticText: "leírás:", description: "", imageUrl: nil, ratingStars: [0.0,0.0,0.0,0.0,0.0]),
+        ProductDetailViewContent(commentsStaticText: "Comments",
+                                 productDetailHeader: ProductDetailHeaderRowViewContent(id: 0, title: "Rating", productMakerStaticText: "Producer:", productMaker: "", producetNameStaticText: "Product:", productName: "", descriptonStaticText: "Description:", description: "", imageUrl: nil, ratingStars: [0.0,0.0,0.0,0.0,0.0]),
                                  comments: [])
     
     private var ratings = [Rating]()
@@ -48,9 +48,9 @@ class ProductDetailViewModel: ObservableObject {
             ProductDetailCommentRowViewContent(starPercent: self.calculateStarCount(from: rating.rating), commenterName: rating.userName, commentTitle: rating.title, commentText: rating.text, commenterId: rating.userId)
         }
         
-        let header = ProductDetailHeaderRowViewContent(id: product.id, title: "Értékelés", productMakerStaticText: "gyártó:", productMaker: product.producer, producetNameStaticText: "termék:", productName: product.name, descriptonStaticText: "leírás:", description: product.description, imageUrl: product.imageUrl, ratingStars: calculateStarPercents(from: product.average))
+        let header = ProductDetailHeaderRowViewContent(id: product.id, title: "Rating", productMakerStaticText: "Producer:", productMaker: product.producer, producetNameStaticText: "Product:", productName: product.name, descriptonStaticText: "Description:", description: product.description, imageUrl: product.imageUrl, ratingStars: calculateStarPercents(from: product.average))
                 
-        return ProductDetailViewContent(commentsStaticText: "Kommentek:", productDetailHeader: header,comments: comments )
+        return ProductDetailViewContent(commentsStaticText: "Comments:", productDetailHeader: header,comments: comments )
     }
         
     private func calculateStarPercents(from rating: Double) -> [Double] {

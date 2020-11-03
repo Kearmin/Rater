@@ -12,7 +12,8 @@ import Foundation
 struct API {
     
     //static var baseURL = "http://127.0.0.1:8080"
-    static var baseURL = "http://10.64.63.16:8080"
+    static var baseURL = "http://Jenos-MacBook-Pro.local:8080"
+    //static var baseURL = "http://192.168.0.110:8080"
         
     static func getProduct(id: Int) -> URL {
         return URL(string: baseURL + "/product/\(id)")!

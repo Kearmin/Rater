@@ -68,7 +68,6 @@ struct AddProductView: View {
                     }
                 }
                 .blur(radius: self.viewModel.isLoading ? 10.0 : 0.0)
-                .offset(x: 0.0, y: -keyboard.currentHeight)
                 if showCaptureImageView {
                     TakePictureView(isShown: $showCaptureImageView, image: self.$viewModel.productImage)
                 }

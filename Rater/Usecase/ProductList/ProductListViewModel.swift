@@ -20,6 +20,9 @@ class ProductListViewModel: ObservableObject {
     private var usecasePublisher = CurrentValueSubject<[Product],Error>([])
     private var scannerData: ScannerFlowData
     
+    
+    private var currentSource: AnyCancellable?
+    
     var model: ProductListModel
     
     private var subscriptions = Set<AnyCancellable>()
@@ -29,11 +32,11 @@ class ProductListViewModel: ObservableObject {
         self.scannerData = scannerData
         self.setupText()
         self.setupContentGenerator()
+        self.setupNotification()
         self.load()
     }
 
     private func setupText(){
-        
         self.scannerData.$barcode
             .sink { barcode in
                 self.searchText = barcode
@@ -47,7 +50,9 @@ class ProductListViewModel: ObservableObject {
             .sink(receiveCompletion: { (error) in
                 print(error)
             }, receiveValue: { (string) in
-                self.usecasePublisher.send(self.usecasePublisher.value)
+                UIApplication.shared.endEditing()
+                self.usecasePublisher.send([])
+                self.load(with: string, refresh: true)
             })
             .store(in: &subscriptions)
     }
@@ -55,21 +60,16 @@ class ProductListViewModel: ObservableObject {
     private func setupContentGenerator(){
         
         self.usecasePublisher
-            .map { products in
-                products.filter { (product) -> Bool in
-                    
-                    if self.searchText != "" {
-                        if product.name.lowercased().contains(self.searchText.lowercased()) {
-                            return true
-                        }
-                        if "\(product.barcode)".contains(self.searchText) {
-                            return true
-                        }
-                        return false
-                    } else {
-                        return true
-                    }
+            .map { array -> [Product] in
+                let set = Set(array)
+                return Array(set)
+            }
+            .map {
+                var mutable = $0
+                mutable.sort { p1, p2 in
+                    p1.id > p2.id
                 }
+                return mutable
             }
             .map { (products) in
                 self.createViewContent(from: products)
@@ -84,26 +84,45 @@ class ProductListViewModel: ObservableObject {
         
     }
     
-    func load(){
-        
-        self.model.getAllProducts()
-            .sink(receiveCompletion: { (error) in
-                print(error)
-            }) { (products) in
-                guard products.isEmpty == false else { return }
-                self.usecasePublisher.value = self.usecasePublisher.value + products
+    private func setupNotification() {
+        NotificationCenter.default.publisher(for: .init("SavedNew"))
+            .sink { (_) in
+                self.load(with: nil, refresh: true)
             }
             .store(in: &subscriptions)
     }
     
+    func load(with text: String? = nil, refresh: Bool = false){
+                
+        if refresh {
+            model.afterId = nil
+            model.shouldLoad = true
+        }
+        
+        guard model.shouldLoad == true else { return }
+        
+        if let source = currentSource {
+            source.cancel()
+            currentSource = nil
+        }
+        
+        self.currentSource = self.model.getAllProducts(searchString: text)
+            .sink(receiveCompletion: { (error) in
+                print(error)
+            }) { (products) in
+                self.usecasePublisher.value = self.usecasePublisher.value + products
+            }
+        
+        self.currentSource?.store(in: &subscriptions)
+        
+    }
+    
     private func createViewContent(from products: [Product]) -> ProductListViewContent {
         
-        var viewContent = ProductListViewContent(rows: [])
-        
-        _ = products.map({ product in
-            viewContent.rows.append(ProductListRowViewContent(id: product.id, imageUrl: product.imageUrl, name: product.name, isLast: product.id == products.last!.id))
+        let content = products.map({ product in
+         ProductListRowViewContent(id: product.id, imageUrl: product.imageUrl, name: product.name, isLast: product.id == products.last!.id)
         })
         
-        return viewContent
+        return .init(rows: content)
     }
 }

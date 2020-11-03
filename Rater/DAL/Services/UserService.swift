@@ -16,7 +16,7 @@ struct UserService {
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
-        
+        //QXNkZmdoOmFzZGZnaA==
         let url = API.login()
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -35,11 +35,6 @@ struct UserService {
     }
     
     func signUp(username: String, password: String) -> AnyPublisher<User, Error> {
-        
-        let dict = [
-            "accountName" : "\(username)",
-            "password" : "\(password)"
-        ] as [String: String]
         
         struct Asd: Codable {
             let accountName: String

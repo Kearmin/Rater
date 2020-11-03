@@ -56,7 +56,7 @@ struct ProductDetailView: View {
                 }
                 Spacer()
                     .frame(height: 20.0)
-                .navigationBarTitle(Text("Értékelés"),displayMode: .inline)
+                .navigationBarTitle(Text("Rating"),displayMode: .inline)
             }
         .onAppear(perform: { self.viewModel.start() })
     }

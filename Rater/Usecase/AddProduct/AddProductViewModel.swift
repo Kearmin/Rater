@@ -47,6 +47,9 @@ class AddProductViewModel: ObservableObject {
         .sink(receiveCompletion: { result in
             print(result)
         }) { (product) in
+            
+            NotificationCenter.default.post(.init(name: .init("SavedNew")))
+            
             self.name = ""
             self.producer = ""
             self.description = ""
